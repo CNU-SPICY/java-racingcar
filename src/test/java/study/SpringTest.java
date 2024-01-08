@@ -13,5 +13,7 @@ public class SpringTest {
         //then
         Assertions.assertThat(result)
                 .contains("1","2");
+        Assertions.assertThat(result)
+                .containsExactly("1","2");
     }
 }
