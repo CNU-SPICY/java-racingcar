@@ -1,0 +1,45 @@
+name: Create Branch on Fork
+
+on:
+  fork:
+    branches:
+      - main
+
+jobs:
+  create-branch:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Get forked user's ID
+      id: get-forked-user
+      run: |
+        FORKED_USER=$(curl -s ${GITHUB_API_URL}/repos/${{ github.repository }}/forks | jq -r '.[0].owner.login')
+        echo "Forked user: $FORKED_USER"
+        echo "::set-output name=forked_user::$FORKED_USER"
+      env:
+        GITHUB_API_URL: https://api.github.com
+
+    - name: Create branch on original repository
+      run: |
+        FORKED_USER=${{ steps.get-forked-user.outputs.forked_user }}
+        NEW_BRANCH_NAME="${FORKED_USER}"
+        
+        # Set up Git config
+        git config user.name "GitHub Actions"
+        git config user.email "actions@github.com"
+
+        # Fetch branches from original repository
+        git fetch origin
+        
+        # Create a new branch
+        git checkout -b $NEW_BRANCH_NAME origin/main
+
+        # Push the new branch to the original repository
+        git push origin $NEW_BRANCH_NAME
+
+      env:
+        FORKED_USER: ${{ steps.get-forked-user.outputs.forked_user }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
