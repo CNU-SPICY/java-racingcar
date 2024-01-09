@@ -3,8 +3,11 @@ package study;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import racingcar.Car;
+import racingcar.Referee;
 
+import java.sql.Ref;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.*;
 
@@ -70,9 +73,57 @@ public class SpringTest {
         honux.increaseCount(4);
 
         //then
-        assertThat(pobi.getMoveCount()).isEqualTo(0);
+        assertThat(pobi.getMoveCount()).isEqualTo(2);
         assertThat(crong.getMoveCount()).isEqualTo(1);
         assertThat(honux.getMoveCount()).isEqualTo(1);
+    }
+
+    @Test
+    void initVictory() {
+        //given
+        Car pobi = new Car("pobi");
+        Car crong = new Car("crong");
+        Car honux = new Car("honux");
+
+        pobi.setMoveCount(2);
+        crong.setMoveCount(3);
+        honux.setMoveCount(4);
+
+        ArrayList<Car> cars = new ArrayList<>();
+        cars.add(pobi);
+        cars.add(crong);
+        cars.add(honux);
+
+        Referee referee = new Referee(cars);
+        //when
+        referee.initVictoryCar();
+
+        //then
+        assertThat(referee.getVictoryCars().get(0)).isEqualTo(pobi);
+    }
+
+    @Test
+    void fasterTest() {
+        //given
+        Car pobi = new Car("pobi");
+        Car crong = new Car("crong");
+        Car honux = new Car("honux");
+
+        pobi.setMoveCount(2);
+        crong.setMoveCount(3);
+        honux.setMoveCount(4);
+
+        ArrayList<Car> cars = new ArrayList<>();
+        cars.add(pobi);
+        cars.add(crong);
+        cars.add(honux);
+
+        Referee referee = new Referee(cars);
+        //when
+        referee.initVictoryCar();
+        referee.faster(honux);
+        //then
+        assertThat(referee.getVictoryCars().get(0)).isEqualTo(honux);
     }
     @Test
     void decideTheGame() {
@@ -81,13 +132,20 @@ public class SpringTest {
         Car crong = new Car("crong");
         Car honux = new Car("honux");
         pobi.setMoveCount(2);
-
+        crong.setMoveCount(4);
+        honux.setMoveCount(4);
         ArrayList<Car> cars = new ArrayList<>();
         cars.add(pobi);
         cars.add(crong);
         cars.add(honux);
 
+        Referee referee = new Referee(cars);
         //when
-
+        referee.decideTheGame();
+        //then
+        assertThat(referee.getVictoryCars().size()).isEqualTo(2);
+        assertThat(referee.getVictoryCars()).contains(crong, honux);
     }
+
+
 }

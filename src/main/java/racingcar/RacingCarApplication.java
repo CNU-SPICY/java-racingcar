@@ -20,5 +20,17 @@ public class RacingCarApplication {
         System.out.println("시도할 횟수는 몇회인가요?");
         int repeatCount = Integer.parseInt(br.readLine());
 
+        while (repeatCount > 0) {
+            for (Car car : cars) {
+                car.increaseCount();
+                System.out.println(car);
+            }
+            System.out.println();
+            repeatCount--;
+        }
+
+        Referee referee = new Referee(cars);
+        referee.decideTheGame();
+        referee.printResult();
     }
 }
