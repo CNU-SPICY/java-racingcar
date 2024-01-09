@@ -48,13 +48,15 @@ public class RacingCarApplication {
         int randomNumber = random.nextInt(10);
         if (randomNumber >= 4) {
             car.increaseStatus();
+            car.increaseCurrentCarBar();
         }
 
     }
 
     // 자동차 상태 결과 출력 메서드
     private static void showCarStatus() {
-
+        cars.forEach(car -> System.out.println(car.getName() + " : " + car.getBar()));
+        System.out.println();
     }
 
     // 승자 출력 메서드
@@ -65,6 +67,7 @@ public class RacingCarApplication {
     private static void gameStart(int tries) {
         for (int i=0; i<tries; i++) {
             racingOneGame();
+            showCarStatus();
         }
     }
 
@@ -76,17 +79,23 @@ class RacingCar {
 
     private String name;
     private int status;
+    private String bar;
 
     public String getName() {
         return name;
     }
 
-    public int getStatus() {
-        return status;
+    public String getBar() {
+        return bar;
     }
 
     public void increaseStatus() {
         this.status++;
+    }
+
+    public void increaseCurrentCarBar() {
+        bar += "-";
+
     }
 
     public RacingCar() {
@@ -95,5 +104,6 @@ class RacingCar {
     public RacingCar(String name, int status) {
         this.name = name;
         this.status = status;
+        this.bar = "";
     }
 }
