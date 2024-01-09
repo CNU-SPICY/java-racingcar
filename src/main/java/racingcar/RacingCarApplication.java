@@ -8,10 +8,8 @@ import java.util.stream.Collectors;
 
 public class RacingCarApplication {
 
-    private static final ArrayList<RacingCar> cars = new ArrayList<>();
     private static Random random = new Random();
-
-    private static int max = -1;
+    public static RacingCarList racingCarList;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -25,28 +23,28 @@ public class RacingCarApplication {
         int tries = sc.nextInt();
 
         gameStart(tries);
-
     }
 
     // 자동차 상태 값 초기화 메서드
     private static void initCarStatus(String input) {
+        ArrayList<RacingCar> cars = new ArrayList<>();
         for (String name : input.split(",")) {
             cars.add(new RacingCar(name, 0));
         }
+        racingCarList = new RacingCarList(cars);
     }
 
 
     // 한 턴마다 자동차 경주를 하는 메서드
     private static void racingOneGame() {
-        for (int i=0; i<cars.size(); i++) {
-            statusUpdate(cars.get(i));
+        for (int i=0; i<racingCarList.getCarSize(); i++) {
+            statusUpdate(racingCarList.getRacingCar(i));
         }
     }
 
 
     // 랜덤 수 생성 및 상태 업데이트 메서드
     private static void statusUpdate(RacingCar car) {
-
 
         // 0에서 9까지의 랜덤 숫자 생성
         int randomNumber = random.nextInt(10);
@@ -57,21 +55,16 @@ public class RacingCarApplication {
 
     }
 
-    // 자동차 상태 결과 출력 메서드
-    private static void showCarStatus() {
-        cars.forEach(car -> System.out.println(car.getName() + " : " + car.getBar()));
-        System.out.println();
-    }
-
     // 승자 계산 메서드
     private static void pickWinner() {
 
-        for(RacingCar car : cars) {
-            max = Math.max(max, car.getStatus());
-        }
+        int maxStatus = racingCarList.getCars().stream()
+                .mapToInt(RacingCar::getStatus)
+                .max()
+                .orElse(-1);
 
-        List<String> winners = cars.stream()
-                .filter(car -> car.getStatus() == max)
+        List<String> winners = racingCarList.getCars().stream()
+                .filter(car -> car.getStatus() == maxStatus)
                 .map(RacingCar::getName).collect(Collectors.toList());
 
         printWinner(winners);
@@ -86,51 +79,12 @@ public class RacingCarApplication {
     private static void gameStart(int tries) {
         for (int i=0; i<tries; i++) {
             racingOneGame();
-            showCarStatus();
+            racingCarList.showCarStatus();
         }
-        showCarStatus();
+        racingCarList.showCarStatus();
         pickWinner();
     }
 
-
-
 }
 
-class RacingCar {
 
-    private String name;
-    private int status;
-    private String bar;
-
-    public RacingCar() {
-    }
-
-    public RacingCar(String name, int status) {
-        this.name = name;
-        this.status = status;
-        this.bar = "";
-    }
-
-
-    public String getName() {
-        return name;
-    }
-
-    public String getBar() {
-        return bar;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void increaseStatus() {
-        this.status++;
-    }
-
-    public void increaseCurrentCarBar() {
-        bar += "-";
-    }
-
-
-}
