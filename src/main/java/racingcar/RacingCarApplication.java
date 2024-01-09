@@ -1,13 +1,17 @@
 package racingcar;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class RacingCarApplication {
 
     private static final ArrayList<RacingCar> cars = new ArrayList<>();
     private static Random random = new Random();
+
+    private static int max = -1;
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -59,16 +63,33 @@ public class RacingCarApplication {
         System.out.println();
     }
 
-    // 승자 출력 메서드
+    // 승자 계산 메서드
     private static void pickWinner() {
 
+        for(RacingCar car : cars) {
+            max = Math.max(max, car.getStatus());
+        }
+
+        List<String> winners = cars.stream()
+                .filter(car -> car.getStatus() == max)
+                .map(RacingCar::getName).collect(Collectors.toList());
+
+        printWinner(winners);
     }
+
+    // 승자 출력 메서드
+    private static void printWinner(List<String> winners) {
+        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
+    }
+
     // 게임 진행 메서드
     private static void gameStart(int tries) {
         for (int i=0; i<tries; i++) {
             racingOneGame();
             showCarStatus();
         }
+        showCarStatus();
+        pickWinner();
     }
 
 
@@ -81,23 +102,6 @@ class RacingCar {
     private int status;
     private String bar;
 
-    public String getName() {
-        return name;
-    }
-
-    public String getBar() {
-        return bar;
-    }
-
-    public void increaseStatus() {
-        this.status++;
-    }
-
-    public void increaseCurrentCarBar() {
-        bar += "-";
-
-    }
-
     public RacingCar() {
     }
 
@@ -106,4 +110,27 @@ class RacingCar {
         this.status = status;
         this.bar = "";
     }
+
+
+    public String getName() {
+        return name;
+    }
+
+    public String getBar() {
+        return bar;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void increaseStatus() {
+        this.status++;
+    }
+
+    public void increaseCurrentCarBar() {
+        bar += "-";
+    }
+
+
 }
