@@ -35,7 +35,7 @@ public class Car implements Comparable<Car>{
     }
     @Override
     public String toString() {
-        return carName + " : " + "-".repeat(moveCount) + "\n";
+        return carName + " : " + "-".repeat(moveCount);
     }
 
     @Override

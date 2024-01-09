@@ -3,22 +3,30 @@ package racingcar;
 import java.util.ArrayList;
 
 public class Referee {
-    ArrayList<Car> cars;
+    private ArrayList<Car> cars;
 
+    private static ArrayList<Car> victoryCars;
+
+    public Referee() {}
     public Referee(ArrayList<Car> cars) {
         this.cars = cars;
     }
 
-    public ArrayList<Car> decideTheGame(ArrayList<Car> cars) {
-        ArrayList<Car> victoryCar = initVictoryCar(cars);
-        for (Car car : cars) {
-            faster(victoryCar, car);
-        }
+    public ArrayList<Car> getVictoryCars() {
+        return victoryCars;
+    }
 
-        return victoryCar;
+    public void addCar(Car car) {
+        cars.add(car);
+    }
+    public void decideTheGame() {
+        initVictoryCar();
+        for (Car car : cars) {
+            faster(car);
+        }
     }   // 우승자 판별
 
-    public void printResult(ArrayList<Car> victoryCars) {
+    public void printResult() {
         StringBuilder result = new StringBuilder();
         for (Car victoryCar : victoryCars) {
             result.append(victoryCar.getCarName())
@@ -29,20 +37,25 @@ public class Referee {
         System.out.println(result);
     }   // 우승 결과 출력
 
-    public ArrayList<Car> initVictoryCar(ArrayList<Car> cars) {
+    public void initVictoryCar() {
         ArrayList<Car> list = new ArrayList<>();
         if (!cars.isEmpty()) {
              list.add(cars.get(0));
         }
-        return list;
-    } // 우승자를 판별할 초기값
+        victoryCars = list;
+    }   // 우승자를 판별할 초기값
 
-    public static void faster(ArrayList<Car> a, Car b) {
-         Car tmp = a.get(0);
-        if(tmp.compareTo(b) > 0){
+    public void faster(Car cmp) {
+        Car tmp= victoryCars.get(0);
+        if(tmp.equals(cmp)) return;
+        if(tmp.compareTo(cmp) > 0){
             return;
         }
-        a.clear();
-        a.add(b);
-    } // 우상자 판별을 위한 거리 비교
+        if(tmp.compareTo(cmp) == 0) {
+            victoryCars.add(cmp);
+            return;
+        }
+        victoryCars.clear();
+        victoryCars.add(cmp);
+    }   // 우상자 판별을 위한 거리 비교
 }
