@@ -20,6 +20,19 @@ public class Car implements Comparable<Car>{
     public boolean checkAhead(int num) {
         return num >= 4;
     }   // 자동차의 움직임 여부 판단
+
+    public void increaseCount() {
+        int check = randomNum();
+        if (checkAhead(check)) {
+            moveCount++;
+        }
+    }
+
+    public void increaseCount(int check) {
+        if(checkAhead(check)) {
+            moveCount++;
+        }
+    }
     @Override
     public String toString() {
         return carName + " : " + "-".repeat(moveCount) + "\n";
