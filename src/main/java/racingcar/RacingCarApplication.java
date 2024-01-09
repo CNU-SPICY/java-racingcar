@@ -23,7 +23,7 @@ public class RacingCarApplication {
     }
 
     // 자동차 상태 값 초기화 메서드
-    public static void InitCarStatus(String input) {
+    private static void InitCarStatus(String input) {
         for (String name : input.split(",")) {
             cars.add(new RacingCar(name, 0));
         }
@@ -31,28 +31,32 @@ public class RacingCarApplication {
 
 
     // 한 턴마다 자동차 경주를 하는 메서드
-    public static void RacingOneGame() {
-
+    private static void RacingOneGame() {
+        for (int i=0; i<cars.size(); i++) {
+            StatusUpdate(cars.get(i));
+        }
     }
 
 
     // 랜덤 수 생성 및 상태 업데이트 메서드
-    public static void StatusUpdate() {
+    private static void StatusUpdate(RacingCar car) {
 
     }
 
     // 자동차 상태 결과 출력 메서드
-    public static void ShowCarStatus() {
+    private static void ShowCarStatus() {
 
     }
 
     // 승자 출력 메서드
-    public static void PickWinner() {
+    private static void PickWinner() {
 
     }
     // 게임 진행 메서드
-    public static void GameStart(int tries) {
-
+    private static void GameStart(int tries) {
+        for (int i=0; i<tries; i++) {
+            RacingOneGame();
+        }
     }
 
 
