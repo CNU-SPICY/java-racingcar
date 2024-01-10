@@ -1,4 +1,4 @@
-package racingcar;
+package main.java.racingcar;
 
 public class Car {
     String name;

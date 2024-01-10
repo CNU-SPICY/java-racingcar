@@ -8,6 +8,8 @@ import java.util.stream.IntStream;
 
 public class RacingCarApplication {
     public static void main(String[] args) {
+
+
         Scanner in = new Scanner(System.in);
 
         //이름 및 시도 횟수 입력
@@ -23,6 +25,7 @@ public class RacingCarApplication {
 
         System.out.println("시도할 회수는 몇회인가요?");
         int tryCount = in.nextInt();
+        in.close();
 
         //car 객체 생성
         List<Car> cars = new ArrayList<>();
@@ -33,6 +36,9 @@ public class RacingCarApplication {
         //차를 움직이고, 현재 상태 출력
         IntStream.range(0, tryCount)
                 .forEach(i -> { cars.forEach(Car::move); printCurrentStatus(cars); });
+
+        //우승차 출력
+        printWinners(getWinners(cars, tryCount));
 
 
 
@@ -45,12 +51,30 @@ public class RacingCarApplication {
     }
 
     //현재 상태 출력
-    private static void printCurrentStatus (List < Car > cars) {
+    private static void printCurrentStatus (List <Car> cars) {
         for (Car car : cars) {
             System.out.print(car.getName() + " : " + "-".repeat(car.distance));
             System.out.println();
         }
         System.out.println();
+    }
+
+    private static void addWinners(List<String> winners, Car car, int tryCount) {
+        if (car.getDistance() == tryCount) {
+            winners.add(car.getName());
+        }
+    }
+
+    private static List<String> getWinners(List<Car> cars, int tryCount) {
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            addWinners(winners, car, tryCount);
+        }
+        return winners;
+    }
+
+    private static void printWinners(List<String> winners) {
+        System.out.println(String.join(", ", winners) + "가 최종 우승했습니다.");
     }
 
 
