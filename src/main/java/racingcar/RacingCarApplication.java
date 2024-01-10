@@ -7,30 +7,50 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class RacingCarApplication {
+    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    private static ArrayList<Car> cars = new ArrayList<>();
 
-    public static void main(String[] args) throws IOException {
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉽표(,)를 기준으로 구분.");
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st = new StringTokenizer(br.readLine(),",");
+    private static int repeatCount;
+    public static void main(String[] args){
 
-        ArrayList<Car> cars = new ArrayList<>();
-        while (st.hasMoreElements()) {
-            cars.add(new Car(st.nextToken().strip()));
+        try {
+            carName();
+            repeatCount();
+        } catch (IOException e) {
+            e.getStackTrace();
+            System.out.println("경주할 자동차 이름의 구분은 (,)를 기준으로 구분 해야합니다.");
+            System.out.println("반복횟수는 int 타입 입니다.");
         }
-        System.out.println("시도할 횟수는 몇회인가요?");
-        int repeatCount = Integer.parseInt(br.readLine());
 
         while (repeatCount > 0) {
-            for (Car car : cars) {
-                car.increaseCount();
-                System.out.println(car);
-            }
-            System.out.println();
+            repeatIncrease();
             repeatCount--;
         }
 
         Referee referee = new Referee(cars);
         referee.decideTheGame();
         referee.printResult();
+    }
+
+    public static void repeatIncrease() {
+        for (Car car : cars) {
+            car.increaseCount();
+            System.out.println(car);
+        }
+        System.out.println();
+    }
+
+    public static void carName() throws IOException {
+        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉽표(,)를 기준으로 구분.");
+        StringTokenizer st = new StringTokenizer(br.readLine(),",");
+
+        while (st.hasMoreElements()) {
+            cars.add(new Car(st.nextToken().strip()));
+        }
+    }
+
+    public static void repeatCount() throws IOException {
+        System.out.println("시도할 횟수는 몇회인가요?");
+        repeatCount = Integer.parseInt(br.readLine());
     }
 }
