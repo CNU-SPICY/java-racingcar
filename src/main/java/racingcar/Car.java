@@ -4,7 +4,7 @@ import java.util.Random;
 
 
 public class Car implements Comparable<Car>{
-    private String carName;
+    private final String carName;
     private int moveCount;
 
     public Car(String carName) {

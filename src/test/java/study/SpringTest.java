@@ -26,7 +26,7 @@ public class SpringTest {
     }
 
     @Test
-    void compareCar1() {
+    void compareCarTest1() {
         //given
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
@@ -38,7 +38,7 @@ public class SpringTest {
     }
 
     @Test
-    void compareCar2() {
+    void compareCarTest2() {
         //given
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
@@ -50,7 +50,7 @@ public class SpringTest {
     }
 
     @Test
-    void compareCar3() {
+    void compareCarTest3() {
         //given
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
@@ -61,7 +61,7 @@ public class SpringTest {
         assertThat(pobi.compareTo(crong)).isEqualTo(0);
     }
     @Test
-    void increaseCount() {
+    void increaseCountTest() {
         //given
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
@@ -79,7 +79,7 @@ public class SpringTest {
     }
 
     @Test
-    void initVictory() {
+    void initVictoryTest() {
         //given
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
@@ -126,7 +126,7 @@ public class SpringTest {
         assertThat(referee.getVictoryCars().get(0)).isEqualTo(honux);
     }
     @Test
-    void decideTheGame() {
+    void decideTheGameTest() {
         //given
         Car pobi = new Car("pobi");
         Car crong = new Car("crong");
@@ -146,6 +146,4 @@ public class SpringTest {
         assertThat(referee.getVictoryCars().size()).isEqualTo(2);
         assertThat(referee.getVictoryCars()).contains(crong, honux);
     }
-
-
 }
