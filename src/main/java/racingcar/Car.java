@@ -4,6 +4,10 @@ public class Car {
     String name;
     int distance;
 
+    Car(String name) {
+        this.name = name;
+    }
+
     public void move() {
         int randomValue = (int) (Math.random()*10);
         if (randomValue >= 4) {
