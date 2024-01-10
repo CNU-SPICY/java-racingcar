@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class RacingCarApplication {
-    private static BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-    private static ArrayList<Car> cars = new ArrayList<>();
+    private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private static final ArrayList<Car> cars = new ArrayList<>();
 
     private static int repeatCount;
     public static void main(String[] args){
@@ -42,7 +42,7 @@ public class RacingCarApplication {
 
     public static void carName() throws IOException {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉽표(,)를 기준으로 구분.");
-        StringTokenizer st = new StringTokenizer(br.readLine(),",");
+        StringTokenizer st = new StringTokenizer(bufferedReader.readLine(),",");
 
         while (st.hasMoreElements()) {
             cars.add(new Car(st.nextToken().strip()));
@@ -51,6 +51,6 @@ public class RacingCarApplication {
 
     public static void repeatCount() throws IOException {
         System.out.println("시도할 횟수는 몇회인가요?");
-        repeatCount = Integer.parseInt(br.readLine());
+        repeatCount = Integer.parseInt(bufferedReader.readLine());
     }
 }
