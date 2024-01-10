@@ -1,2 +1,9 @@
-package racingcar.controller;public class Game {
+package racingcar.controller;
+
+public class Game {
+    void start() {
+
+    }
+
+
 }
