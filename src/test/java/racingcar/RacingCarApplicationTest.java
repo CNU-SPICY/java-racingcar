@@ -1,2 +1,4 @@
-package racingcar;public class RacingCarApplicationTest {
+package racingcar;
+
+public class RacingCarApplicationTest {
 }
