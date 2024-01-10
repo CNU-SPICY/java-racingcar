@@ -39,8 +39,32 @@ public class RacingCarApplication {
         try_num= sc.nextInt();
         sc.close();
     }
+    public void moveRacing(Car[] car_list) {
+        for(int i = 0; i < car_list.length; i++) {
+            car_list[i].move();
+        }
+    }
+    public void printRacing(Car[] car_list) {
+        for(int i = 0; i < car_list.length; i++) {
+            car_list[i].print();
+        }
+        System.out.println("");
+    }
+
     public static void main(String[] args){
         RacingCarApplication racing = new RacingCarApplication();
         racing.input();
+
+        Car[] car_list = new Car[name_list.length];
+
+        for(int i = 0; i < name_list.length; i++) {
+            Car new_car = new Car(name_list[i]);
+            car_list[i] = new_car;
+        }
+        for(int i = 0; i < try_num; i++) {
+            racing.moveRacing(car_list);
+            racing.printRacing(car_list);
+        }
+
     }
 }
