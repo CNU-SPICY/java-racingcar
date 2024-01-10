@@ -2,6 +2,9 @@ package racingcar;
 
 import java.util.Scanner;
 import java.util.Random;
+import java.util.Arrays;
+import java.util.ArrayList;
+
 class Car {
     private String car_name;
     private int distance = 0;
@@ -29,6 +32,8 @@ class Car {
 public class RacingCarApplication {
     private static String[] name_list;
     private static int try_num;
+    private static ArrayList<String> win_list = new ArrayList<>();
+
 
     public void input(){
         Scanner sc = new Scanner(System.in);
@@ -51,6 +56,36 @@ public class RacingCarApplication {
         System.out.println("");
     }
 
+    public int getMax(Car[] car_list) {
+        int[] dis_list = new int[name_list.length];
+        for(int i = 0; i < car_list.length; i++) {
+            dis_list[i] = car_list[i].getDistance();
+        }
+        Arrays.sort(dis_list);
+        int max = dis_list[dis_list.length -1];
+        return max;
+    }
+
+    public void addWinner(Car car, int max) {
+        if(car.getDistance() == max){
+            win_list.add(car.getCar_name());
+        }
+    }
+
+    public void printWinner(Car[] car_list) {
+        int max = getMax(car_list);
+        for(int i = 0; i < car_list.length; i++) {
+            addWinner(car_list[i], max);
+        }
+        String winner = "";
+        for(String str : win_list){
+            winner += (str + ", ");
+        }
+        winner = winner.substring(0, winner.length() - 2) + "가 최종 우승했습니다.";
+        System.out.println(winner);
+    }
+
+
     public static void main(String[] args){
         RacingCarApplication racing = new RacingCarApplication();
         racing.input();
@@ -65,6 +100,8 @@ public class RacingCarApplication {
             racing.moveRacing(car_list);
             racing.printRacing(car_list);
         }
+        racing.printWinner(car_list);
+
 
     }
 }
