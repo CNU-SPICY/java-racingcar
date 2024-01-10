@@ -32,4 +32,18 @@ public class InputValidator {
             throw new IllegalArgumentException("자동차 이름은 공백만으로는 구성할 수 없습니다.");
         }
     }
+
+    public void validateNumberOfTrials(String numberOfTrials) {
+        if (!isNumeric(numberOfTrials)) {
+            throw new IllegalArgumentException("시도 횟수는 숫자만 가능합니다.");
+        }
+
+        if (Integer.parseInt(numberOfTrials) < 1) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상만 가능합니다.");
+        }
+    }
+
+    private boolean isNumeric(String numberOfTrials) {
+        return numberOfTrials.matches("[0-9]+");
+    }
 }
