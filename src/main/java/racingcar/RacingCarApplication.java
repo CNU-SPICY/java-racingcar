@@ -48,7 +48,10 @@ public class RacingCarApplication {
         StringTokenizer st = new StringTokenizer(bufferedReader.readLine(),",");
 
         while (st.hasMoreElements()) {
-            cars.add(new Car(st.nextToken().strip()));
+            String name = st.nextToken().strip();
+            if(name.length() <= 5) {
+                cars.add(new Car(name));
+            }
         }
     }
 
