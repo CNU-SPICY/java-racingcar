@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 public class RacingCarApplication {
-    private static BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    private static final BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     private static final ArrayList<Car> cars = new ArrayList<>();
 
     private static int repeatCount;
