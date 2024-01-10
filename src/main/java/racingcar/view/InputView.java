@@ -16,4 +16,10 @@ public class InputView {
         inputValidator.validateCarNames(carNames);
         return carNames.split(",");
     }
+
+    public Integer inputNumberOfTrials() {
+        String numberOfTrials = getInput();
+        inputValidator.validateNumberOfTrials(numberOfTrials);
+        return Integer.parseInt(numberOfTrials);
+    }
 }
