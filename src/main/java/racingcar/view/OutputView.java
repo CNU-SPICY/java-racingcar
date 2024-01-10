@@ -1,5 +1,8 @@
 package racingcar.view;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+import racingcar.domain.Car;
 import racingcar.domain.Cars;
 import racingcar.view.constants.ConstantMessage;
 
@@ -33,5 +36,12 @@ public class OutputView {
         for (int i = 0; i < position; i++) {
             System.out.print("-");
         }
+    }
+
+    public void printWinner(Car[] winners) {
+        String result = Arrays.stream(winners)
+                .map(Car::getCarName)
+                .collect(Collectors.joining(", "));
+        System.out.println(result + ConstantMessage.WINNER.getMessage());
     }
 }
