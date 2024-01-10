@@ -17,9 +17,12 @@ public class RacingCarApplication {
             carName();
             repeatCount();
         } catch (IOException e) {
+            System.out.println("입력된 값이 없습니다");
             e.getStackTrace();
-            System.out.println("경주할 자동차 이름의 구분은 (,)를 기준으로 구분 해야합니다.");
+        } catch (NumberFormatException e) {
             System.out.println("반복횟수는 int 타입 입니다.");
+        } catch (Exception e) {
+            System.out.println("경주할 자동차 이름의 구분은 (,)를 기준으로 구분 해야합니다.");
         }
 
         while (repeatCount > 0) {
