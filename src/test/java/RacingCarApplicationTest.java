@@ -2,9 +2,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.RacingCar;
+import racingcar.domain.RacingCar;
 import racingcar.RacingCarApplication;
-import racingcar.RacingCarList;
+import racingcar.domain.RacingCars;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -34,9 +34,9 @@ public class RacingCarApplicationTest {
     void initCarStatusTest() {
         ArrayList<RacingCar> cars = new ArrayList<>();
         cars.add(new RacingCar("car1", 0));
-        RacingCarList racingCarList = new RacingCarList(cars);
+        RacingCars racingCars = new RacingCars(cars);
 
-        assertEquals(racingCarList.getCarSize(), 1);
+        assertEquals(racingCars.getCarSize(), 1);
     }
 
 
@@ -69,8 +69,8 @@ public class RacingCarApplicationTest {
         cars.add(car2);
         cars.add(car3);
 
-        RacingCarList racingCarList = new RacingCarList(cars);
-        racingCarList.showCarStatus();
+        RacingCars racingCars = new RacingCars(cars);
+        racingCars.showCarStatus();
 
         assertEquals("car1 : -\ncar2 : -\ncar3 : -\n\n", outputMessage.toString());
 
@@ -92,9 +92,9 @@ public class RacingCarApplicationTest {
         cars.add(car2);
         cars.add(car3);
 
-        RacingCarList racingCarList = new RacingCarList(cars);
+        RacingCars racingCars = new RacingCars(cars);
 
-        RacingCarApplication.pickWinner(racingCarList);
+        RacingCarApplication.pickWinner(racingCars);
 
         assertEquals("car1가 최종 우승했습니다.\n", outputMessage.toString());
     }

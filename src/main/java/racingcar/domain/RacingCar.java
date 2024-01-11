@@ -1,4 +1,4 @@
-package racingcar;
+package racingcar.domain;
 
 public class RacingCar {
 
@@ -9,10 +9,10 @@ public class RacingCar {
     public RacingCar() {
     }
 
-    public RacingCar(String name, int status) {
+    public RacingCar(String name) {
         this.name = name;
-        this.status = status;
         this.bar = "";
+        this.status = 0;
     }
 
 

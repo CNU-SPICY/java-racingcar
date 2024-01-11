@@ -1,5 +1,8 @@
 package racingcar;
 
+import racingcar.controller.RacingGame;
+import racingcar.domain.RacingCar;
+import racingcar.domain.RacingCars;
 import racingcar.view.InputView;
 import racingcar.view.ResultView;
 
@@ -7,12 +10,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class RacingCarApplication {
 
-    public static RacingCarList racingCarList;
+    public static RacingCars racingCars;
 
     public static void main(final String... args) throws IOException {
         final var carNames = InputView.getCarNames();
@@ -24,20 +26,12 @@ public class RacingCarApplication {
         ResultView.printWinners(racingGame.getWinners());
     }
 
-    // 자동차 상태 값 초기화 메서드
-    public static void initCarStatus(String input) {
-        ArrayList<RacingCar> cars = new ArrayList<>();
-        for (String name : input.split(",")) {
-            cars.add(new RacingCar(name, 0));
-        }
-        racingCarList = new RacingCarList(cars);
-    }
 
 
     // 한 턴마다 자동차 경주를 하는 메서드
     public static void racingOneGame() {
-        for (int i=0; i<racingCarList.getCarSize(); i++) {
-            statusUpdate(racingCarList.getRacingCar(i));
+        for (int i = 0; i< racingCars.getCarSize(); i++) {
+            statusUpdate(racingCars.getRacingCar(i));
         }
     }
 
@@ -55,14 +49,14 @@ public class RacingCarApplication {
     }
 
     // 승자 계산 메서드
-    public static void pickWinner(RacingCarList racingCarList) {
+    public static void pickWinner(RacingCars racingCars) {
 
-        int maxStatus = racingCarList.getCars().stream()
+        int maxStatus = racingCars.getCars().stream()
                 .mapToInt(RacingCar::getStatus)
                 .max()
                 .orElse(-1);
 
-        List<String> winners = racingCarList.getCars().stream()
+        List<String> winners = racingCars.getCars().stream()
                 .filter(car -> car.getStatus() == maxStatus)
                 .map(RacingCar::getName).collect(Collectors.toList());
 
@@ -78,10 +72,10 @@ public class RacingCarApplication {
     public static void gameStart(int tries) {
         for (int i=0; i<tries; i++) {
             racingOneGame();
-            racingCarList.showCarStatus();
+            racingCars.showCarStatus();
         }
-        racingCarList.showCarStatus();
-        pickWinner(racingCarList);
+        racingCars.showCarStatus();
+        pickWinner(racingCars);
     }
 
 }
