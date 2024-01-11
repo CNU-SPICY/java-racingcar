@@ -4,26 +4,19 @@ import java.util.Random;
 
 public class RacingCar implements Comparable<RacingCar> {
     private final int MOVE_CONDITION = 4;
-    private final int MAX_RANDOM_VALUE = 10;
 
     private String name;
     private int position;
-    private Random random;
 
     public RacingCar(String name) {
         this.name = name;
         this.position = 0;
-        random = new Random();
     }
 
-    public void carPositionUpdate() {
-        if (random.nextInt(MAX_RANDOM_VALUE) >= MOVE_CONDITION) {
-            moveCarForword();
+    public void carPositionUpdate(NumberGenerator numberGenerator) {
+        if (numberGenerator.generate() >= MOVE_CONDITION) {
+            this.position++;
         }
-    }
-
-    private void moveCarForword() {
-        this.position++;
     }
 
     public StringBuilder getCurrentBarStatus() {
@@ -38,7 +31,7 @@ public class RacingCar implements Comparable<RacingCar> {
         return this.position - otherRacingCar.position;
     }
 
-    public boolean isSampPositionCar(RacingCar otherRacingCar) {
+    public boolean isSamePositionCar(RacingCar otherRacingCar) {
         return this.position == otherRacingCar.position;
     }
     public String getName() {

@@ -19,7 +19,8 @@ public class RacingCars {
 
     public void racingOneGame() {
         for (RacingCar racingCar : racingCars) {
-            racingCar.carPositionUpdate();
+            final NumberGenerator numberGenerator = new RandomNumberGenerator();
+            racingCar.carPositionUpdate(numberGenerator);
         }
     }
 
@@ -37,7 +38,7 @@ public class RacingCars {
     private List<String> findSamePositionCars(RacingCar maxPositionCar) {
         return racingCars
                 .stream()
-                .filter(maxPositionCar::isSampPositionCar)
+                .filter(maxPositionCar::isSamePositionCar)
                 .map(RacingCar::getName)
                 .collect(Collectors.toList());
     }
