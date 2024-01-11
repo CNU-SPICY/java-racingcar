@@ -1,11 +1,6 @@
 package racingcar.controller;
-
-import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCars;
 import racingcar.view.ResultView;
-
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.List;
 
 public class RacingGame {
@@ -23,13 +18,10 @@ public class RacingGame {
             racingCars.racingOneGame();
             ResultView.showCarsPosition(racingCars);
         }
+        ResultView.showCarsPosition(racingCars);
     }
-
 
     public List<String> getWinners() {
+        return racingCars.pickWinner(racingCars);
     }
-
-
-
-
 }
