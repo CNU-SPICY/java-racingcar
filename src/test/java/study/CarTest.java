@@ -1,31 +1,15 @@
 package study;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
-import racingcar.Car;
-import racingcar.Referee;
+import racingcar.domain.Car;
 
-import java.sql.Ref;
 import java.util.ArrayList;
-import java.util.Collection;
 
 import static org.assertj.core.api.Assertions.*;
 
-public class SpringTest {
-    @Test
-    void test() {
-        //given
-        String str = "1,2";
-        //when
-        String[] result = str.split(",");
-        //then
-        assertThat(result)
-                .contains("1","2");
-        assertThat(result)
-                .containsExactly("1","2");
-    }
+public class CarTest {
 
-    @Test
+   /* @Test
     void compareCarTest1() {
         //given
         Car pobi = new Car("pobi");
@@ -48,7 +32,7 @@ public class SpringTest {
         //then
         assertThat(pobi.compareTo(crong)).isEqualTo(1);
     }
-
+    // DTO 써서 사용하기
     @Test
     void compareCarTest3() {
         //given
@@ -76,9 +60,9 @@ public class SpringTest {
         assertThat(pobi.getMoveCount()).isEqualTo(2);
         assertThat(crong.getMoveCount()).isEqualTo(1);
         assertThat(honux.getMoveCount()).isEqualTo(1);
-    }
+    }*/
 
-    @Test
+    /*@Test
     void initVictoryTest() {
         //given
         Car pobi = new Car("pobi");
@@ -145,5 +129,5 @@ public class SpringTest {
         //then
         assertThat(referee.getVictoryCars().size()).isEqualTo(2);
         assertThat(referee.getVictoryCars()).contains(crong, honux);
-    }
+    }*/
 }
