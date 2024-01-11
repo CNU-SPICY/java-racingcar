@@ -3,6 +3,8 @@ package racingcar.domain;
 import java.util.Random;
 
 public class RacingCar implements Comparable<RacingCar> {
+    private final int MOVE_CONDITION = 4;
+    private final int MAX_RANDOM_VALUE = 10;
 
     private String name;
     private int position;
@@ -15,7 +17,7 @@ public class RacingCar implements Comparable<RacingCar> {
     }
 
     public void carPositionUpdate() {
-        if (random.nextInt(10) >= 4) {
+        if (random.nextInt(MAX_RANDOM_VALUE) >= MOVE_CONDITION) {
             moveCarForword();
         }
     }
@@ -36,7 +38,7 @@ public class RacingCar implements Comparable<RacingCar> {
         return this.position - otherRacingCar.position;
     }
 
-    public boolean isSampePositionCar(RacingCar otherRacingCar) {
+    public boolean isSampPositionCar(RacingCar otherRacingCar) {
         return this.position == otherRacingCar.position;
     }
     public String getName() {

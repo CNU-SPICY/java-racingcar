@@ -29,7 +29,6 @@ public class RacingCars {
         return Bars;
     }
 
-    // 승자 계산 메서드
     public List<String> pickWinner(RacingCars racingCars) {
         final RacingCar maxPositionCar = findMaxPositionCar();
         return findSamePositionCars(maxPositionCar);
@@ -38,7 +37,7 @@ public class RacingCars {
     private List<String> findSamePositionCars(RacingCar maxPositionCar) {
         return racingCars
                 .stream()
-                .filter(maxPositionCar::isSampePositionCar)
+                .filter(maxPositionCar::isSampPositionCar)
                 .map(RacingCar::getName)
                 .collect(Collectors.toList());
     }
