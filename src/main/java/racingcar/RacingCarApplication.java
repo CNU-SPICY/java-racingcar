@@ -1,5 +1,9 @@
 package racingcar;
 
+import racingcar.view.InputView;
+import racingcar.view.ResultView;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -10,18 +14,14 @@ public class RacingCarApplication {
 
     public static RacingCarList racingCarList;
 
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+    public static void main(final String... args) throws IOException {
+        final var carNames = InputView.getCarNames();
+        final var tryCount = InputView.getTryCount();
 
-        System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String input = sc.nextLine();
+        final var racingGame = new RacingGame(carNames, tryCount);
+        racingGame.start();
 
-        initCarStatus(input);
-
-        System.out.println("시도할 회수는 몇회인가요?");
-        int tries = sc.nextInt();
-
-        gameStart(tries);
+        ResultView.printWinners(racingGame.getWinners());
     }
 
     // 자동차 상태 값 초기화 메서드
