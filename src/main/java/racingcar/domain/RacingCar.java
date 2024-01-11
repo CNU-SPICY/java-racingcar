@@ -1,18 +1,33 @@
 package racingcar.domain;
 
+import java.util.Random;
+
 public class RacingCar {
 
     private String name;
-    private int status;
-    private String bar;
+    private int position;
+    private Random random;
 
-    public RacingCar() {
-    }
 
     public RacingCar(String name) {
         this.name = name;
-        this.bar = "";
-        this.status = 0;
+        this.position = 0;
+        random = new Random();
+    }
+    public void carPositionUpdate() {
+        if (random.nextInt(10) >= 4) {
+            moveCarForword();
+        }
+    }
+
+    private void moveCarForword() {
+        this.position++;
+    }
+
+    public StringBuilder getCurrentBarStatus() {
+        StringBuilder currentBarStatus = new StringBuilder();
+        currentBarStatus.append("-".repeat(Math.max(0, position)));
+        return currentBarStatus;
     }
 
 
@@ -20,20 +35,5 @@ public class RacingCar {
         return name;
     }
 
-    public String getBar() {
-        return bar;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void increaseStatus() {
-        this.status++;
-    }
-
-    public void increaseCurrentCarBar() {
-        bar += "-";
-    }
 
 }

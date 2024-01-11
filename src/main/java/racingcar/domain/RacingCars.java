@@ -5,7 +5,7 @@ import racingcar.domain.RacingCar;
 import java.util.ArrayList;
 
 public class RacingCars {
-    private ArrayList<RacingCar> racingCars = new ArrayList<>();
+    private final ArrayList<RacingCar> racingCars = new ArrayList<>();
 
     public RacingCars(String carNames) {
         createRacingCars(carNames);
@@ -18,7 +18,9 @@ public class RacingCars {
     }
 
     public void racingOneGame() {
-
+        for(RacingCar racingCar : racingCars) {
+            racingCar.carPositionUpdate();
+        }
     }
 
 
@@ -32,15 +34,10 @@ public class RacingCars {
         return racingCars.size();
     }
 
-    public RacingCar getRacingCar(int index) {
-        return racingCars.get(index);
+
+    public StringBuilder getAllCurrentBarStatus() {
+        StringBuilder Bars = new StringBuilder();
+        racingCars.forEach(racingCar -> Bars.append(racingCar.getCurrentBarStatus()).append("\n"));
+        return Bars;
     }
-
-    // 자동차 상태 결과 출력 메서드
-    public void showCarStatus() {
-        racingCars.forEach(car -> System.out.println(car.getName() + " : " + car.getBar()));
-        System.out.println();
-    }
-
-
 }

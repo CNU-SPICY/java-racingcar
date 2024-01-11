@@ -2,6 +2,7 @@ package racingcar.controller;
 
 import racingcar.domain.RacingCar;
 import racingcar.domain.RacingCars;
+import racingcar.view.ResultView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class RacingGame {
     public void start() {
         for(int i=0; i<tries; i++) {
             racingCars.racingOneGame();
+            ResultView.showCarsPosition(racingCars);
         }
     }
 
