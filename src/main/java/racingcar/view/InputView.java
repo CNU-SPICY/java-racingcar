@@ -1,5 +1,7 @@
 package racingcar.view;
 
+import racingcar.domain.validator.CarNamesValidator;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,7 +13,10 @@ public class InputView {
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
         BufferedReader buffer = new BufferedReader(new InputStreamReader(System.in));
 
-        return buffer.readLine();
+        String carNames = buffer.readLine();
+        CarNamesValidator.validate(carNames);
+
+        return carNames;
     }
 
     public static int getTryCount() throws IOException {

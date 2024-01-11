@@ -2,9 +2,9 @@ import generator.MovableNumberGenerator;
 import generator.NonMovableNumberGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import racingcar.domain.NumberGenerator;
+import racingcar.domain.generator.NumberGenerator;
 import racingcar.domain.RacingCar;
-import racingcar.domain.RacingCars;
+
 import static org.assertj.core.api.Assertions.*;
 
 

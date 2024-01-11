@@ -1,6 +1,6 @@
 package racingcar.domain;
 
-import java.util.Random;
+import racingcar.domain.generator.NumberGenerator;
 
 public class RacingCar implements Comparable<RacingCar> {
     private final int MOVE_CONDITION = 4;

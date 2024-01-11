@@ -1,5 +1,8 @@
 package racingcar.domain;
 
+import racingcar.domain.generator.NumberGenerator;
+import racingcar.domain.generator.RandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;

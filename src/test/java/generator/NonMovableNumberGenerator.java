@@ -1,6 +1,6 @@
 package generator;
 
-import racingcar.domain.NumberGenerator;
+import racingcar.domain.generator.NumberGenerator;
 
 public class NonMovableNumberGenerator implements NumberGenerator {
     @Override
