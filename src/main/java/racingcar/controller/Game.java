@@ -13,6 +13,7 @@ public class Game {
         String[] carNames = inputView.inputCarNames();
         outputView.printInputNumberOfTrials();
         Integer numberOfTrials = inputView.inputNumberOfTrials();
+        InputView.closeScanner();
 
         Cars cars = new Cars(carNames);
 
