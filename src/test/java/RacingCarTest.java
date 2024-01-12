@@ -8,7 +8,7 @@ import racingcar.domain.RacingCar;
 import static org.assertj.core.api.Assertions.*;
 
 
-public class RacingCarApplicationTest {
+public class RacingCarTest {
 
     @DisplayName("random number가 4보다 크거나 같을 때의 Car 위치 테스트")
     @Test
@@ -38,13 +38,19 @@ public class RacingCarApplicationTest {
         assertThat(car).extracting("position").isEqualTo(0);
     }
 
+    @DisplayName("RacingCar의 Bar Status 정보를 제대로 지니고 있는지 테스트")
     @Test
-    void () {
+    void eachCarHaveBarStatusTest() {
         // given
+        final RacingCar car = new RacingCar("소나타");
+        final NumberGenerator numberGenerator = new MovableNumberGenerator();
+        car.carPositionUpdate(numberGenerator);
 
         // when
+        StringBuilder currentBarStatus = car.getCurrentBarStatus();
 
         // then
+        assertThat(currentBarStatus.toString()).isEqualTo("소나타 : -");
     }
 
 
