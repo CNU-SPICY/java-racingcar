@@ -11,13 +11,6 @@ repositories {
 dependencies {
     testImplementation 'org.assertj:assertj-core:3.22.0'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.8.2'
-    // https://mvnrepository.com/artifact/org.mockito/mockito-core
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '3.9.0'
-
-    // https://mvnrepository.com/artifact/org.mockito/mockito-junit-jupiter
-    testImplementation group: 'org.mockito', name: 'mockito-junit-jupiter', version: '3.9.0'
-    testImplementation 'org.mockito:mockito-inline:3.6.0'
-
 }
 
 java {
