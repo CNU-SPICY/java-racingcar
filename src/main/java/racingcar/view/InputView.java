@@ -1,18 +1,17 @@
 package racingcar.view;
 
-import racingcar.domain.Car;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.StringTokenizer;
 
 public class InputView {
     private final static int NAME_LEN = 5;
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-    public ArrayList<String> getInputCarName() throws IOException {
-        ArrayList<String> carNames = new ArrayList<>();
+    public List<String> getInputCarName() throws IOException {
+        List<String> carNames = new ArrayList<>();
         StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine(),",");
         while (stringTokenizer.hasMoreTokens()) {
             String carName = stringTokenizer.nextToken().strip();
@@ -23,7 +22,7 @@ public class InputView {
     public int repeatCount() throws IOException {
         return Integer.parseInt(bufferedReader.readLine());
     }
-    private void addCarNames(String carName, ArrayList<String> carNames) {
+    private void addCarNames(String carName, List<String> carNames) {
         if(checkNameLen(carName)) {
             carNames.add(carName);
         }

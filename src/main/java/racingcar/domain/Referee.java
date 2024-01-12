@@ -9,7 +9,7 @@ public class Referee {
     private final List<Car> cars;
     private final List<Car> winners;
     private final RandomGenerator generator = new RandomGenerator();
-    public Referee(ArrayList<String> carNames) {
+    public Referee(List<String> carNames) {
         winners = new ArrayList<>();
         cars = new ArrayList<>();
         for (String carName : carNames) {
@@ -21,6 +21,11 @@ public class Referee {
             increaseMoveCount(isMovable(), car);
         }
     }   // 자동차 전진 판단
+    public void increaseMoveCount(boolean movable, Car car) {
+        if(movable) {
+            car.increaseMoveCount();
+        }
+    }   // 자동차 전진
     public List<CarDto> findWinners() {
         if (carsIsEmpty()) return null;
         if (!winners.isEmpty()) winners.clear();
@@ -40,11 +45,6 @@ public class Referee {
     private boolean isMovable() {
         return generator.randomGenerate() >= 4;
     }
-    private void increaseMoveCount(boolean movable, Car car) {
-        if(movable) {
-            car.increaseMoveCount();
-        }
-    }   // 자동차 전진
     private void compareAndAddWinners(Car winner, Car car) {
         if(winner!=car && winner.compareTo(car) <= 0) {
             winners.add(car);

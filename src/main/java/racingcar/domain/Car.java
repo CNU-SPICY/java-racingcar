@@ -14,11 +14,14 @@ public class Car implements Comparable<Car> {
         moveCount++;
     }
     public static List<CarDto> makeCarDtos(List<Car> cars) {
-        ArrayList<CarDto> carDtos = new ArrayList<>();
+        List<CarDto> carDtos = new ArrayList<>();
         for (Car car : cars) {
             carDtos.add(new CarDto(car.moveCount, car.carName));
         }
         return carDtos;
+    }
+    public static CarDto makeCarDto(Car car) {
+        return new CarDto(car.moveCount, car.carName);
     }
     @Override
     public int compareTo(Car car) {

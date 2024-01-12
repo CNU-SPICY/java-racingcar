@@ -6,6 +6,9 @@ public class CarDto {
         this.moveCount = moveCount;
         this.carName = carName;
     }
+    public int getMoveCount() {
+        return moveCount;
+    }
     public String getCarName() {
         return carName;
     }
