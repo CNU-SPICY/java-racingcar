@@ -8,25 +8,22 @@ import java.util.stream.IntStream;
 
 public class RacingController {
 
+    private final Cars cars;
     private final int tryCount;
 
-    public RacingController(final String carNames, final String tryCount) {
-        setNames(carNames);
+    public RacingController(final Cars cars, final String tryCount) {
+        this.cars = cars;
         this.tryCount = Integer.parseInt(tryCount);
     }
 
     public void run() {
         IntStream.range(0, tryCount).forEach((round)->{
-            OutputView.printResults(Cars.getCars());
-            Cars.play();
+            OutputView.printResults(cars.getCars());
+            cars.play();
         });
     }
 
-    public void setNames(final String carNames){
-        Cars.setNames(carNames);
-    }
-
     public List<String> getWinners() {
-        return Cars.getWinners();
+        return cars.getWinners();
     }
 }

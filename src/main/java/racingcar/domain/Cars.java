@@ -6,34 +6,34 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class Cars {
-    private static List<Car> cars;
+    private final List<Car> cars;
 
-    public static List<Car> getCars() {
-        return Collections.unmodifiableList(cars);
-    }
-
-    public static void setNames(final String carNames) {
+    public Cars(String carNames) {
         cars = Arrays.stream(carNames.split(","))
                 .map(Car::new)
                 .collect(Collectors.toUnmodifiableList());
     }
 
-    public static List<String> getWinners(){
+    public List<Car> getCars() {
+        return cars;
+    }
+
+    public void play() {
+        cars.forEach((car) -> car.move(new RandomGenerator().generate()));
+    }
+
+    public List<String> getWinners() {
         final Car carOfMaxPosition = getCarOfMaxPosition();
         return getNamesOfSamePosition(carOfMaxPosition);
     }
 
-    private static Car getCarOfMaxPosition() {
+    private Car getCarOfMaxPosition() {
         return Collections.max(cars);
     }
 
-    private static List<String> getNamesOfSamePosition(Car carOfMaxPosition){
+    private List<String> getNamesOfSamePosition(Car carOfMaxPosition) {
         return cars.stream().filter(carOfMaxPosition::isSamePosition)
                 .map(Car::getName)
                 .collect(Collectors.toUnmodifiableList());
-    }
-
-    public static void play() {
-        cars.forEach(Car::play);
     }
 }

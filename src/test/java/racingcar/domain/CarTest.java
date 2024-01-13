@@ -17,8 +17,8 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @CsvSource(value = {"3:0", "4:1"}, delimiter = ':')
-    @DisplayName("move(arg) 테스트")
+    @CsvSource(value = {"2:0", "3:0", "4:1", "5:1"}, delimiter = ':')
+    @DisplayName("move() 인자 값에 따른 position 값 변화")
     void moveTest(int arg, int expected) {
         // given
         int position = car.getPosition();
@@ -31,7 +31,7 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("isSamePosition() 테스트")
+    @DisplayName("position이 같은 두 car 객체에 대해 position이 같음을 판단")
     void isSamePositionTest() {
         // given
         Car other = new Car("Other");
@@ -42,7 +42,4 @@ class CarTest {
         // then
         assertThat(result).isEqualTo(true);
     }
-
-
-
 }

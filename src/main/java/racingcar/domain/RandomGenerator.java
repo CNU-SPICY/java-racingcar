@@ -1,14 +1,13 @@
 package racingcar.domain;
 
-public class RandomGenerator implements RandomUtil{
-    RandomUtil randomUtil;
+import java.util.Random;
 
-    public RandomGenerator(RandomUtil randomUtil){
-        this.randomUtil = randomUtil;
-    }
+public class RandomGenerator{
+    private static final int RANDOM_RANGE = 10;
 
     public int generate(){
-        return randomUtil.generate();
+        Random random = new Random();
+        return random.nextInt(RANDOM_RANGE);
     }
 
 }

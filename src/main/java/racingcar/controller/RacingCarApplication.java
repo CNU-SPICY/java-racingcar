@@ -10,10 +10,11 @@ public class RacingCarApplication {
         final String carNames = InputView.getCarNames();
         final String tryCount = InputView.getTryCount();
 
-        final RacingController controller = new RacingController(carNames, tryCount);
+        final Cars cars = new Cars(carNames);
+        final RacingController controller = new RacingController(cars, tryCount);
         controller.run();
 
-        OutputView.printResults(Cars.getCars());
+        OutputView.printResults(cars.getCars());
         OutputView.printWinners(controller.getWinners());
 
     }

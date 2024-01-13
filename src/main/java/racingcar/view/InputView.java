@@ -21,5 +21,4 @@ public class InputView {
     private static void close(){
         scanner.close();
     }
-
 }

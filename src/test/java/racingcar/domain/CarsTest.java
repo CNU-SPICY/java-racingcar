@@ -11,33 +11,27 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class CarsTest {
 
+    private Cars cars;
+
     @BeforeEach
     void setUp(){
-        Cars.setNames("pobi,crong,honux");
+        cars = new Cars("pobi,crong,honux");
     }
 
     @Test
-    @DisplayName("setNames() 테스트")
+    @DisplayName("Cars 생성자를 통해 car 객체 생성")
     void setNamesTest() {
-        // given
-
-        // when
-        List<String> result = Cars.getCars().stream().map(Car::getName).collect(Collectors.toUnmodifiableList());
-
         // then
-        assertThat(result).contains("pobi", "crong", "honux");
+        assertThat(cars.getCars())
+                .extracting(Car::getName)
+                .contains("pobi", "crong", "honux");
     }
 
     @Test
-    @DisplayName("getWinners() 테스트")
+    @DisplayName("Winner를 정상적으로 반환")
     void getWinnersTest() {
-        // given
-
-        // when
-        List<String> result = Cars.getWinners();
-
         // then
-        assertThat(result).isNotEmpty();
+        assertThat(cars.getWinners())
+                .contains("pobi", "crong", "honux");
     }
-
 }
