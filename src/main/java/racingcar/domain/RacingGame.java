@@ -37,4 +37,15 @@ public class RacingGame {
         }
         return carsStatus;
     }
+
+    //결과 반환
+    public List<String> getWinners() {
+        List<String> winners = new ArrayList<>();
+        for (Car car : cars) {
+            if (car.getDistance() == tryCount) {
+                winners.add(car.getName());
+            }
+        }
+        return winners;
+    }
 }
