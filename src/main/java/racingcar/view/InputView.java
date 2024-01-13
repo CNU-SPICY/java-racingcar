@@ -9,10 +9,11 @@ import java.util.StringTokenizer;
 
 public class InputView {
     private final static int NAME_LEN = 5;
+    private StringTokenizer stringTokenizer;
     BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
     public List<String> getInputCarName() throws IOException {
         List<String> carNames = new ArrayList<>();
-        StringTokenizer stringTokenizer = new StringTokenizer(bufferedReader.readLine(),",");
+        stringTokenizer = new StringTokenizer(bufferedReader.readLine(),",");
         while (stringTokenizer.hasMoreTokens()) {
             String carName = stringTokenizer.nextToken().strip();
             addCarNames(carName, carNames);
@@ -22,10 +23,14 @@ public class InputView {
     public int repeatCount() throws IOException {
         return Integer.parseInt(bufferedReader.readLine());
     }
-    private void addCarNames(String carName, List<String> carNames) {
+    private void addCarNames(String carName, List<String> carNames) throws IOException {
         if(checkNameLen(carName)) {
             carNames.add(carName);
+            return;
         }
+        carNames.clear();
+        System.out.println("자동차 이름은 5자 이하로 입력 해주세요.");
+        stringTokenizer = new StringTokenizer(bufferedReader.readLine(), ",");
     }
     private  boolean checkNameLen(String carName) {
         return carName.length() <= NAME_LEN;
