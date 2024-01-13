@@ -18,7 +18,6 @@ import static org.mockito.Mockito.*;
 
 class RefereeTest {
     Referee referee;
-    @Mock RandomGenerator randomGenerator;
     @BeforeEach
     public void init() {
         ArrayList<String> names = new ArrayList<>(Arrays.asList("pobi", "rupy", "crong"));
