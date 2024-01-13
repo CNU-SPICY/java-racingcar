@@ -18,7 +18,7 @@ public class RacingCarTest {
         final NumberGenerator numberGenerator = new MovableNumberGenerator();
 
         // when
-        car.carPositionUpdate(numberGenerator);
+        car.move(numberGenerator);
 
         // then
         assertThat(car).extracting("position").isEqualTo(1);
@@ -32,26 +32,9 @@ public class RacingCarTest {
         final NumberGenerator numberGenerator = new NonMovableNumberGenerator();
 
         // when
-        car.carPositionUpdate(numberGenerator);
+        car.move(numberGenerator);
 
         // then
         assertThat(car).extracting("position").isEqualTo(0);
     }
-
-    @DisplayName("RacingCar의 Bar Status 정보를 제대로 지니고 있는지 테스트")
-    @Test
-    void eachCarHaveBarStatusTest() {
-        // given
-        final RacingCar car = new RacingCar("소나타");
-        final NumberGenerator numberGenerator = new MovableNumberGenerator();
-        car.carPositionUpdate(numberGenerator);
-
-        // when
-        StringBuilder currentBarStatus = car.getCurrentBarStatus();
-
-        // then
-        assertThat(currentBarStatus.toString()).isEqualTo("소나타 : -");
-    }
-
-
 }

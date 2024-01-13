@@ -3,6 +3,7 @@ package racingcar.domain;
 import racingcar.domain.generator.NumberGenerator;
 
 public class RacingCar implements Comparable<RacingCar> {
+
     private final int MOVE_CONDITION = 4;
 
     private String name;
@@ -13,17 +14,10 @@ public class RacingCar implements Comparable<RacingCar> {
         this.position = 0;
     }
 
-    public void carPositionUpdate(NumberGenerator numberGenerator) {
+    public void move(NumberGenerator numberGenerator) {
         if (numberGenerator.generate() >= MOVE_CONDITION) {
             this.position++;
         }
-    }
-
-    public StringBuilder getCurrentBarStatus() {
-        StringBuilder currentBarStatus = new StringBuilder();
-        currentBarStatus.append(name).append(" : ");
-        currentBarStatus.append("-".repeat(Math.max(0, position)));
-        return currentBarStatus;
     }
 
     @Override
@@ -34,7 +28,12 @@ public class RacingCar implements Comparable<RacingCar> {
     public boolean isSamePositionCar(RacingCar otherRacingCar) {
         return this.position == otherRacingCar.position;
     }
+
     public String getName() {
         return this.name;
+    }
+
+    public int getPosition() {
+        return position;
     }
 }

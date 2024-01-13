@@ -10,7 +10,7 @@ public class RacingCarsTest {
     @Test
     void RacingCarCreationTest() {
         // given
-        String carNames = "소나타,마티즈,싼타페";
+        String[] carNames = {"소나타","마티즈","싼타페"};
 
         // when
         RacingCars racingCars = new RacingCars(carNames);
@@ -19,25 +19,11 @@ public class RacingCarsTest {
         assertThat(racingCars).isNotNull();
     }
 
-    @DisplayName("RacingCars의 racingOneGame 메서드 테스트")
-    @Test
-    void RacingOneGameTest() {
-        // given
-        String carNames = "소나타,마티즈,싼타페";
-        RacingCars racingCars = new RacingCars(carNames);
-
-        // when
-        racingCars.racingOneGame();
-
-        // then
-        assertThat(racingCars.getAllCurrentBarStatus().toString()).isNotEmpty();
-    }
-
     @DisplayName("RacingCars의 pickWinner 메서드 테스트")
     @Test
     void PickWinnerTest() {
         // given
-        String carNames = "소나타,마티즈,싼타페";
+        String[] carNames = {"소나타","마티즈","싼타페"};
         RacingCars racingCars = new RacingCars(carNames);
 
         // when

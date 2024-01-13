@@ -5,10 +5,10 @@ import java.util.List;
 
 public class RacingGame {
 
-    private int tries;
+    private final int tries;
     private final RacingCars racingCars;
 
-    public RacingGame(String carNames, int tryCount) {
+    public RacingGame(String[] carNames, int tryCount) {
         racingCars = new RacingCars(carNames);
         this.tries = tryCount;
     }
@@ -16,9 +16,9 @@ public class RacingGame {
     public void start() {
         for(int i=0; i<tries; i++) {
             racingCars.racingOneGame();
-            ResultView.showCarsPosition(racingCars);
+            ResultView.showCarsPosition(racingCars.getRacingCars());
         }
-        ResultView.showCarsPosition(racingCars);
+        ResultView.showCarsPosition(racingCars.getRacingCars());
     }
 
     public List<String> getWinners() {

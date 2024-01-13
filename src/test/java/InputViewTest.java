@@ -37,6 +37,21 @@ public class InputViewTest {
         assertThat(emptyNameException.getMessage()).isEqualTo("하나의 자동차라도 입력해주세요.");
     }
 
+    @DisplayName("공백이 여러개인 경우 테스트")
+    @Test
+    void multipleEmptyInputTest() {
+        // given
+        String names = " ";
+
+        // when
+        Throwable emptyNameException = Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            CarNamesValidator.validate(names);
+        });
+
+        // then
+        assertThat(emptyNameException.getMessage()).isEqualTo("하나의 자동차라도 입력해주세요.");
+    }
+
     @DisplayName("올바르지 않은 형식의 tryCount를 넣었을 때의 테스트")
     @Test
     void notProperTryCountTest() {

@@ -11,7 +11,6 @@ public class CarNamesValidator {
         if(isBlank(names)) {
             throw new IllegalArgumentException(EMPTY_INPUT_ERROR);
         }
-
         if(isDuplicate(names)) {
             throw new IllegalArgumentException(DUPLICATE_NAME_ERROR);
         }
