@@ -5,10 +5,10 @@ import java.util.Arrays;
 public class Cars {
     private final Car[] cars;
 
-    public Cars(String[] carNames) {
+    public Cars(String[] carNames, MovementCondition movementCondition) {
         cars = new Car[carNames.length];
         for (int i = 0; i < carNames.length; i++) {
-            cars[i] = new Car(carNames[i]);
+            cars[i] = new Car(carNames[i], movementCondition);
         }
     }
 
