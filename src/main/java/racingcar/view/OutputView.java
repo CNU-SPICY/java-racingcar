@@ -4,10 +4,10 @@ import racingcar.domain.Car;
 import java.util.ArrayList;
 
 public class OutputView {
-    public void printRacing(Car[] carList) {
-        for(int i = 0; i < carList.length; i++) {
-            System.out.println(carList[i].getCarName() + " : " +
-                    "-".repeat(carList[i].getDistance()));
+    public void printRacing(Car[] cars) {
+        for(int i = 0; i < cars.length; i++) {
+            System.out.println(cars[i].getCarName() + " : " +
+                    "-".repeat(cars[i].getDistance()));
         }
         System.out.println();
     }

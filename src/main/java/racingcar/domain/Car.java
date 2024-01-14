@@ -3,7 +3,6 @@ package racingcar.domain;
 public class Car {
     private final String carName;
     private int distance = 0;
-    private RandomGenerator random = new RandomGenerator();
 
     public Car(String carName) {
         this.carName = carName;
@@ -17,8 +16,8 @@ public class Car {
         return distance;
     }
 
-    public void move() {
-        if (random.randomGenerate() >= 4) {
+    public void move(int random) {
+        if (random >= 4) {
             distance ++;
         }
     }

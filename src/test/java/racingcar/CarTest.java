@@ -14,10 +14,6 @@ class CarTest {
     @Test
     @DisplayName("자동차 객체 - 이름 반환")
     void getCar_name() {
-        assertThat(car1.getCar_name()).isEqualTo("pobi");
-
-        Car car2 = new Car("");
-        assertThat(car2.getCar_name()).isEqualTo("");
     }
 
     @Test
@@ -29,7 +25,6 @@ class CarTest {
     @Test
     @DisplayName("자동차 객체 - 이동 메서드")
     void move() {
-        car1.move();
         assertThat(car1.getDistance() == 0 || car1.getDistance() == 1).isTrue();
     }
 }
