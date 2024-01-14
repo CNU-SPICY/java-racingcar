@@ -6,12 +6,18 @@ import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class Game {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
     private final MovementCondition movementCondition;
 
-    public Game(MovementCondition movementCondition) {
+    private Game(MovementCondition movementCondition, InputView inputView, OutputView outputView) {
         this.movementCondition = movementCondition;
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
+
+    public static Game createGame(MovementCondition movementCondition, InputView inputView, OutputView outputView) {
+        return new Game(movementCondition, inputView, outputView);
     }
 
     public void start() {
