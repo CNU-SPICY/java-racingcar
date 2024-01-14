@@ -7,7 +7,7 @@ public class TryCountValidator {
 
     public static void validate(String tryCount) {
         if(isBlank(tryCount)) {
-            throw new IllegalArgumentException(EMPTY_INPUT_ERROR);
+            throw new NullPointerException(EMPTY_INPUT_ERROR);
         }
         try {
             Integer.parseInt(tryCount);
@@ -17,6 +17,6 @@ public class TryCountValidator {
     }
 
     private static boolean isBlank(String tryCount) {
-        return tryCount.isBlank();
+        return tryCount == null || tryCount.trim().isEmpty();
     }
 }

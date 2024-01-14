@@ -1,9 +1,12 @@
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
 import racingcar.domain.validator.CarNamesValidator;
 import racingcar.domain.validator.TryCountValidator;
 import static org.assertj.core.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class InputViewTest {
 
@@ -13,13 +16,10 @@ public class InputViewTest {
         // given
         String names = "소나타,소나타,마티즈";
 
-        // when
-        Throwable carNameException = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            CarNamesValidator.validate(names);
-        });
-
-        // then
-        assertThat(carNameException.getMessage()).isEqualTo("중복된 이름을 사용하면 안됩니다.");
+        // when, then
+        assertThatThrownBy(() -> CarNamesValidator.validate(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("중복된 이름을 사용하면 안됩니다.");
     }
 
     @DisplayName("빈 문자열 입력 제한이 되는 지 테스트")
@@ -28,28 +28,22 @@ public class InputViewTest {
         // given
         String names = "";
 
-        // when
-        Throwable emptyNameException = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            CarNamesValidator.validate(names);
-        });
-
-        // then
-        assertThat(emptyNameException.getMessage()).isEqualTo("하나의 자동차라도 입력해주세요.");
+        // when, then
+        assertThatThrownBy(() -> CarNamesValidator.validate(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("하나의 자동차라도 입력해주세요.");
     }
 
-    @DisplayName("공백이 여러개인 경우 테스트")
+    @DisplayName("공백이 여러 개인 경우 테스트")
     @Test
     void multipleEmptyInputTest() {
         // given
         String names = " ";
 
-        // when
-        Throwable emptyNameException = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            CarNamesValidator.validate(names);
-        });
-
-        // then
-        assertThat(emptyNameException.getMessage()).isEqualTo("하나의 자동차라도 입력해주세요.");
+        // when, then
+        assertThatThrownBy(() -> CarNamesValidator.validate(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("하나의 자동차라도 입력해주세요.");
     }
 
     @DisplayName("올바르지 않은 형식의 tryCount를 넣었을 때의 테스트")
@@ -58,27 +52,32 @@ public class InputViewTest {
         // given
         String tryCount = "hi";
 
-        // when
-        Throwable tryCountException = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            TryCountValidator.validate(tryCount);
-        });
-
-        // then
-        assertThat(tryCountException.getMessage()).isEqualTo("올바른 형식의 정수를 입력해주세요.");
+        // when, then
+        assertThatThrownBy(() -> TryCountValidator.validate(tryCount))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("올바른 형식의 정수를 입력해주세요.");
     }
 
-    @DisplayName("tryCount가 공백이 경우 테스트")
+    @DisplayName("올바른 형식의 tryCount를 넣었을 때의 테스트")
     @Test
-    void emptyTryCountTest() {
+    void properTryCountTest() {
         // given
-        String tryCount = "";
+        String tryCount = "5";
 
-        // when
-        Throwable tryCountException = Assertions.assertThrows(IllegalArgumentException.class, () -> {
-            TryCountValidator.validate(tryCount);
-        });
+        // when, then
+        assertDoesNotThrow(() -> TryCountValidator.validate(tryCount));
+    }
 
-        // then
-        assertThat(tryCountException.getMessage()).isEqualTo("입력값이 공백이면 안됩니다.");
+    @DisplayName("tryCount가 공백인 경우 테스트")
+    @ParameterizedTest
+    @NullAndEmptySource
+    void emptyTryCountTest(String input) {
+        // given
+        // 주어지는 인수 input
+
+        // when, then
+        assertThatThrownBy(() -> TryCountValidator.validate(input))
+                .isInstanceOf(NullPointerException.class)
+                .hasMessage("입력값이 공백이면 안됩니다.");
     }
 }

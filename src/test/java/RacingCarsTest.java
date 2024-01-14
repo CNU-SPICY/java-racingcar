@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.RacingCars;
@@ -6,12 +7,16 @@ import static org.assertj.core.api.Assertions.*;
 
 public class RacingCarsTest {
 
+    private String[] carNames;
+
+    @BeforeEach
+    void setUp() {
+        carNames = new String[]{"소나타", "마티즈", "싼타페"};
+    }
+
     @DisplayName("RacingCar 생성이 잘 되는 지 테스트")
     @Test
-    void RacingCarCreationTest() {
-        // given
-        String[] carNames = {"소나타","마티즈","싼타페"};
-
+    void racingCarCreationTest() {
         // when
         RacingCars racingCars = new RacingCars(carNames);
 
@@ -21,9 +26,7 @@ public class RacingCarsTest {
 
     @DisplayName("RacingCars의 pickWinner 메서드 테스트")
     @Test
-    void PickWinnerTest() {
-        // given
-        String[] carNames = {"소나타","마티즈","싼타페"};
+    void pickWinnerTest() {
         RacingCars racingCars = new RacingCars(carNames);
 
         // when
@@ -34,5 +37,4 @@ public class RacingCarsTest {
         assertThat(winners).isNotNull();
         assertThat(winners).isNotEmpty();
     }
-
 }
