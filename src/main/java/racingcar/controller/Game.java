@@ -10,20 +10,33 @@ public class Game {
     private final OutputView outputView = new OutputView();
 
     public void start(MovementCondition movementCondition) {
-        outputView.printInputCarNames();
-        String[] carNames = inputView.inputCarNames();
-        outputView.printInputNumberOfTrials();
-        Integer numberOfTrials = inputView.inputNumberOfTrials();
-        InputView.closeScanner();
-
+        String[] carNames = getCarNamesFromUser();
+        Integer numberOfTrials = getNumberOfTrialsFromUser();
         Cars cars = new Cars(carNames, movementCondition);
+        runRaces(cars, numberOfTrials);
+        declareWinners(cars);
+    }
 
+
+    private String[] getCarNamesFromUser() {
+        outputView.printInputCarNames();
+        return inputView.inputCarNames();
+    }
+
+    private Integer getNumberOfTrialsFromUser() {
+        outputView.printInputNumberOfTrials();
+        return inputView.inputNumberOfTrials();
+    }
+
+    private void runRaces(Cars cars, Integer numberOfTrials) {
         outputView.printResult();
         for (int i = 0; i < numberOfTrials; i++) {
             cars.move();
             outputView.printCars(cars);
         }
+    }
 
+    private void declareWinners(Cars cars) {
         outputView.printWinner(cars.getWinners());
     }
 }
