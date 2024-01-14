@@ -6,8 +6,8 @@ import racingcar.domain.RandomMovementCondition;
 
 public class RacingCarApplication {
     public static void main(String[] args) {
-        Game game = new Game();
         MovementCondition movementCondition = new RandomMovementCondition();
-        game.start(movementCondition);
+        Game game = new Game(movementCondition);
+        game.start();
     }
 }

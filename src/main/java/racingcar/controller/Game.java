@@ -8,8 +8,13 @@ import racingcar.view.OutputView;
 public class Game {
     private final InputView inputView = new InputView();
     private final OutputView outputView = new OutputView();
+    private final MovementCondition movementCondition;
 
-    public void start(MovementCondition movementCondition) {
+    public Game(MovementCondition movementCondition) {
+        this.movementCondition = movementCondition;
+    }
+
+    public void start() {
         String[] carNames = getCarNamesFromUser();
         Integer numberOfTrials = getNumberOfTrialsFromUser();
         Cars cars = new Cars(carNames, movementCondition);
