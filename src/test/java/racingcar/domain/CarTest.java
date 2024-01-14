@@ -11,7 +11,7 @@ class CarTest {
         //given
         Car pobi = new Car(0,"pobi");
         //when
-        pobi.increaseMoveCount();
+        pobi.move();
         //then
         assertThat(Car.makeCarDto(pobi).getMoveCount()).isEqualTo(1);
     }

@@ -1,36 +1,36 @@
 package racingcar.controller;
 
-import racingcar.domain.Referee;
+import racingcar.domain.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 import java.io.IOException;
 
 public class RaceController {
-    private static InputView inputView;
-    private static OutputView outputView;
+
+    private final InputView inputView;
+    private final OutputView outputView;
+
     public RaceController() {
         inputView = new InputView();
         outputView = new OutputView();
     }
     public void run() {
         try {
-            outputView.inputCarName();
-            Referee referee = new Referee(inputView.getInputCarName());
+            Cars cars = new Cars(inputView.getInputCarName());
 
             outputView.inputRepeatCount();
             int repeatCount = inputView.repeatCount();
+            repeatRace(cars, repeatCount);
 
-            repeatRace(referee, repeatCount);
-
-            outputView.printRaceResult(referee.findWinners());
+            outputView.printRaceResult(cars.findWinners());
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
-    public void repeatRace(Referee referee, int repeatCount) {
+    public void repeatRace(Cars cars, int repeatCount) {
         while (repeatCount > 0) {
-            referee.move();
-            outputView.printRaceState(referee.returnCars());
+            cars.moveCars();
+            outputView.printRaceState(cars.returnCars());
             repeatCount--;
         }
     }

@@ -10,7 +10,7 @@ public class Car implements Comparable<Car> {
         this.moveCount = moveCount;
         this.carName = carName;
     }
-    public void increaseMoveCount() {
+    public void move() {
         moveCount++;
     }
     public static List<CarDto> makeCarDtos(List<Car> cars) {
@@ -23,8 +23,9 @@ public class Car implements Comparable<Car> {
     public static CarDto makeCarDto(Car car) {
         return new CarDto(car.moveCount, car.carName);
     }
+
     @Override
     public int compareTo(Car car) {
-        return Integer.compare(this.moveCount, car.moveCount);
+        return this.moveCount - car.moveCount;
     }
 }
