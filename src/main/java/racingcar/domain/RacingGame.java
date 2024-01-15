@@ -8,10 +8,12 @@ import main.java.racingcar.view.OutputView;
 public class RacingGame {
     private List<Car> cars;
     private int tryCount;
+    private RandomNumberGenerator randomNumberGenerator;
 
     public RacingGame(String[] carNames, int tryCount) {
         this.tryCount = tryCount;
         initializeCars(carNames);
+        this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
     private void initializeCars(String[] carNames) {
@@ -24,12 +26,11 @@ public class RacingGame {
     public void race() {
         IntStream.range(0, tryCount)
                 .forEach(i -> {
-                    cars.forEach(Car::move);
+                    cars.forEach(car -> car.move(randomNumberGenerator));
                     OutputView.printCurrentStatus(generateStatus()); // 각 회차별 상태 출력
                 });
     }
 
-    //현재 상태 반환
     public List<String> generateStatus() {
         List<String> carsStatus = new ArrayList<>();
         for (Car car : cars) {
@@ -38,7 +39,6 @@ public class RacingGame {
         return carsStatus;
     }
 
-    //결과 반환
     public List<String> getWinners() {
         List<String> winners = new ArrayList<>();
         for (Car car : cars) {

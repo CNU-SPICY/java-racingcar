@@ -9,8 +9,8 @@ public class Car {
         this.name = name;
     }
 
-    public void move() {
-        int randomValue = (int) (Math.random()*10);
+    public void move(RandomNumberGenerator randomNumberGenerator) {
+        int randomValue = randomNumberGenerator.generateRandomNumber(10);
         if (randomValue >= MOVE_NUMBER) {
             distance++;
         }
