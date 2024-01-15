@@ -1,6 +1,7 @@
 package racingcar.domain;
 
 public class Car {
+    public static final int MOVABLE_NUMBER = 4;
     private final String carName;
     private int distance = 0;
 
@@ -17,7 +18,7 @@ public class Car {
     }
 
     public void move(int random) {
-        if (random >= 4) {
+        if (random >= MOVABLE_NUMBER) {
             distance ++;
         }
     }

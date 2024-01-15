@@ -6,12 +6,14 @@ import java.util.Arrays;
 public class RacingGame {
     private final String[] carNames;
     private final Car[] cars;
-    private RandomGenerator random = new RandomGenerator();
-    private ArrayList<String> winners = new ArrayList<>();
+    private RandomGenerator random;
+    private ArrayList<String> winners;
 
     public RacingGame(String[] carNames) {
         this.carNames = carNames;
         cars = new Car[carNames.length];
+        random = new RandomGenerator();
+        winners = new ArrayList<>();
         for(int i = 0; i < carNames.length; i++) {
             Car new_car = new Car(carNames[i]);
             cars[i] = new_car;
