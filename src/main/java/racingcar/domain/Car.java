@@ -1,6 +1,7 @@
 package main.java.racingcar.domain;
 
 public class Car {
+    private static final int MOVE_NUMBER = 4;
     private String name;
     private int distance;
 
@@ -10,7 +11,7 @@ public class Car {
 
     public void move() {
         int randomValue = (int) (Math.random()*10);
-        if (randomValue >= 4) {
+        if (randomValue >= MOVE_NUMBER) {
             distance++;
         }
     }
