@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -15,7 +16,8 @@ class CarsTest {
 
     @BeforeEach
     void setUp(){
-        cars = new Cars("pobi,crong,honux");
+        final List<String> carNames = Arrays.asList("pobi", "crong", "honux");
+        cars = new Cars(carNames);
     }
 
     @Test

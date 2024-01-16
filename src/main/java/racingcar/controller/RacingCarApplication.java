@@ -4,11 +4,15 @@ import racingcar.domain.Cars;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class RacingCarApplication {
 
     public static void main(String[] args) {
-        final String carNames = InputView.getCarNames();
-        final String tryCount = InputView.getTryCount();
+        final List<String> carNames = InputView.getCarNames();
+        final int tryCount = InputView.getTryCount();
 
         final Cars cars = new Cars(carNames);
         final RacingController controller = new RacingController(cars, tryCount);
@@ -18,5 +22,4 @@ public class RacingCarApplication {
         OutputView.printWinners(controller.getWinners());
 
     }
-
 }

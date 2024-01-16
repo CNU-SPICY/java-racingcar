@@ -7,6 +7,9 @@ public class Car implements Comparable<Car>{
     private int position = 1;
 
     public Car(final String name){
+        if(name.length() > 5){
+            throw new IllegalArgumentException("자동차 이름은 5글자 이하로 입력해주세요.");
+        }
         this.name = name;
     }
 

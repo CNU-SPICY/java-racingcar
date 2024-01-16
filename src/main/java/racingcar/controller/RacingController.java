@@ -11,9 +11,9 @@ public class RacingController {
     private final Cars cars;
     private final int tryCount;
 
-    public RacingController(final Cars cars, final String tryCount) {
+    public RacingController(final Cars cars, final int tryCount) {
         this.cars = cars;
-        this.tryCount = Integer.parseInt(tryCount);
+        this.tryCount = tryCount;
     }
 
     public void run() {

@@ -8,8 +8,8 @@ import java.util.stream.Collectors;
 public class Cars {
     private final List<Car> cars;
 
-    public Cars(String carNames) {
-        cars = Arrays.stream(carNames.split(","))
+    public Cars(final List<String> carNames) {
+        cars = carNames.stream()
                 .map(Car::new)
                 .collect(Collectors.toUnmodifiableList());
     }

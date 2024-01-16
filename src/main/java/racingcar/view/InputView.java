@@ -1,21 +1,30 @@
 package racingcar.view;
 
+import racingcar.domain.validator.CarNamesValidator;
+import racingcar.domain.validator.TryCountValidator;
+
+import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class InputView {
-    private static Scanner scanner = new Scanner(System.in);
+    private static final Scanner scanner = new Scanner(System.in);
 
-    public static String getCarNames(){
+    public static List<String> getCarNames(){
         System.out.println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).");
-        String carNames = scanner.nextLine();
+        String inputNames = scanner.nextLine();
+
+        List<String> carNames = Arrays.asList(inputNames.split(","));
+        CarNamesValidator.validate(carNames);
         return carNames;
     }
 
-    public static String getTryCount() {
+    public static int getTryCount() {
         System.out.println("시도할 회수는 몇회인가요?");
         String tryCount = scanner.nextLine();
         close();
-        return tryCount;
+        TryCountValidator.validate(tryCount);
+        return Integer.parseInt(tryCount);
     }
 
     private static void close(){
