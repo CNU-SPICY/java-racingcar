@@ -23,8 +23,4 @@ public class Car {
     public int getDistance() {
         return distance;
     }
-
-    public String generateStatus() {
-        return name + " : " + "-".repeat(distance);
-    }
 }
