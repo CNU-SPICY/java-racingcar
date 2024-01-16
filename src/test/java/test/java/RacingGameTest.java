@@ -1,40 +1,58 @@
 package test.java;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.List;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.*;
+
 import main.java.racingcar.domain.RacingGame;
 
-class RacingGameTest {
+public class RacingGameTest {
+
     private RacingGame racingGame;
 
     @BeforeEach
     void setUp() {
-        String[] carNames = {"Car1", "Car2"};
-        racingGame = new RacingGame(carNames, 5);
+        String[] carNames = {"Car1", "Car2", "Car3"};
+        int tryCount = 5;
+        racingGame = new RacingGame(carNames, tryCount);
     }
 
     @Test
-    void testGenerateStatus() {
-        // when
-        List<String> statusList = racingGame.generateStatus();
+    void race_ShouldUpdateDistances_WhenCalled() {
+        // given & when
+        racingGame.race();
 
         // then
-        for (String status : statusList) {
-            assertTrue(status.matches("(Car1|Car2) : -+"));
+        for (int distance : racingGame.getDistances()) {
+            assertTrue(distance == 0 || distance == 1);
         }
     }
 
     @Test
-    void testGetWinners() {
+    void getWinners_ShouldReturnEmptyList_WhenNoCarReachedTryCount() {
         // when
-        racingGame.race();
         List<String> winners = racingGame.getWinners();
 
         // then
-        assertTrue(winners.contains("Car1"));
-        assertFalse(winners.contains("Car2"));
+        assertTrue(winners.isEmpty());
+    }
+
+    @Test
+    void getWinners_ShouldReturnWinningCars_WhenSomeCarReachedTryCount() {
+        // when
+        for (int i = 0; i < racingGame.getTryCount(); i++) {
+            racingGame.race();
+        }
+
+        List<String> winners = racingGame.getWinners();
+
+        // then
+        assertFalse(winners.isEmpty());
+        assertEquals(racingGame.getCars().size(), winners.size());
     }
 }
-
