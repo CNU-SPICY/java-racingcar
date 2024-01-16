@@ -3,9 +3,10 @@ package main.java.racingcar.view;
 import java.util.List;
 
 public class OutputView {
-    public static void printCurrentStatus(List<String> carsStatus) {
-        for (String status : carsStatus) {
-            System.out.println(status);
+    public static void printCurrentStatus(List<String> carNames, List<Integer> distances) {
+        for (int i = 0; i < carNames.size(); i++) {
+            System.out.print(carNames.get(i) + " : ");
+            System.out.println("-".repeat(distances.get(i)));
         }
         System.out.println();
     }
