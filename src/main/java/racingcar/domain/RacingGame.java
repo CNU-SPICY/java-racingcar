@@ -2,11 +2,10 @@ package main.java.racingcar.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.IntStream;
-import main.java.racingcar.view.OutputView;
+import main.java.racingcar.domain.Car;
 
 public class RacingGame {
-    private List<Car> cars;
+    private List<Car> cars = new ArrayList<>();
     private int tryCount;
     private RandomNumberGenerator randomNumberGenerator;
 
@@ -16,27 +15,36 @@ public class RacingGame {
         this.randomNumberGenerator = new RandomNumberGenerator();
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     private void initializeCars(String[] carNames) {
-        cars = new ArrayList<>();
         for (String name : carNames) {
             cars.add(new Car(name));
         }
     }
 
     public void race() {
-        IntStream.range(0, tryCount)
-                .forEach(i -> {
-                    cars.forEach(car -> car.move(randomNumberGenerator));
-                    OutputView.printCurrentStatus(generateStatus()); // 각 회차별 상태 출력
-                });
+        for (Car car : cars) {
+            car.move(randomNumberGenerator);
+        }
     }
 
-    public List<String> generateStatus() {
-        List<String> carsStatus = new ArrayList<>();
+    public List<String> getNames() {
+        List<String> carNames = new ArrayList<>();
         for (Car car : cars) {
-            carsStatus.add(car.generateStatus());
+            carNames.add(car.getName());
         }
-        return carsStatus;
+        return carNames;
+    }
+
+    public List<Integer> getDistances() {
+        List<Integer> distances = new ArrayList<>();
+        for (Car car : cars) {
+            distances.add(car.getDistance());
+        }
+        return distances;
     }
 
     public List<String> getWinners() {
@@ -47,5 +55,9 @@ public class RacingGame {
             }
         }
         return winners;
+    }
+
+    public int getTryCount() {
+        return tryCount;
     }
 }
