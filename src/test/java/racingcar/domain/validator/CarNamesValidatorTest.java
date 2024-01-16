@@ -20,7 +20,7 @@ class CarNamesValidatorTest {
         List<String> carNames = Arrays.asList(inputNames.split(","));
 
         // when
-        Throwable thrown = catchThrowable(()->{
+        Throwable thrown = catchThrowable(() -> {
             CarNamesValidator.validate(carNames);
         });
 
@@ -37,7 +37,7 @@ class CarNamesValidatorTest {
         List<String> carNames = Arrays.asList(inputNames.split(","));
 
         // when
-        Throwable thrown = catchThrowable(()->{
+        Throwable thrown = catchThrowable(() -> {
             CarNamesValidator.validate(carNames);
         });
 
@@ -54,12 +54,11 @@ class CarNamesValidatorTest {
         List<String> carNames = Arrays.asList(inputNames.split(","));
 
         // when
-        Throwable thrown = catchThrowable(()->{
+        Throwable thrown = catchThrowable(() -> {
             CarNamesValidator.validate(carNames);
         });
 
         // then
         assertThat(thrown).doesNotThrowAnyException();
     }
-
 }

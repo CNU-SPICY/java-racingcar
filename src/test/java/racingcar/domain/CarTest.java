@@ -23,7 +23,7 @@ class CarTest {
         car.move(arg);
 
         // then
-        assertThat(car.getPosition()).isEqualTo(position+expected);
+        assertThat(car.getPosition()).isEqualTo(position + expected);
     }
 
     @Test
@@ -44,7 +44,7 @@ class CarTest {
     @DisplayName("자동차 이름이 5글자보다 클 때 테스트")
     void nameValidator() {
         // when
-        Throwable thrown = catchThrowable(()->{
+        Throwable thrown = catchThrowable(() -> {
             Car car = new Car("Test Car");
         });
 

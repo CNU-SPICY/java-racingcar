@@ -20,6 +20,5 @@ public class RacingCarApplication {
 
         OutputView.printResults(cars.getCars());
         OutputView.printWinners(controller.getWinners());
-
     }
 }

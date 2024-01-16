@@ -1,13 +1,13 @@
 package racingcar.domain;
 
-public class Car implements Comparable<Car>{
+public class Car implements Comparable<Car> {
     private static final int MOVEMENT_CONDITION = 4;
 
     private final String name;
     private int position = 1;
 
-    public Car(final String name){
-        if(name.length() > 5){
+    public Car(final String name) {
+        if (name.length() > 5) {
             throw new IllegalArgumentException("자동차 이름은 5글자 이하로 입력해주세요.");
         }
         this.name = name;
@@ -18,7 +18,7 @@ public class Car implements Comparable<Car>{
         return this.position - o.getPosition();
     }
 
-    public boolean isSamePosition(Car o){
+    public boolean isSamePosition(Car o) {
         return this.position == o.getPosition();
     }
 

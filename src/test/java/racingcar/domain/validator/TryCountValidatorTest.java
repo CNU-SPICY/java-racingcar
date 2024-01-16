@@ -18,7 +18,7 @@ class TryCountValidatorTest {
         String inputCount = "string";
 
         // when
-        Throwable thrown = catchThrowable(()->{
+        Throwable thrown = catchThrowable(() -> {
             TryCountValidator.validate(inputCount);
         });
 
@@ -34,7 +34,7 @@ class TryCountValidatorTest {
         String inputCount = "0";
 
         // when
-        Throwable thrown = catchThrowable(()->{
+        Throwable thrown = catchThrowable(() -> {
             TryCountValidator.validate(inputCount);
         });
 
@@ -50,12 +50,11 @@ class TryCountValidatorTest {
         String inputCount = "5";
 
         // when
-        Throwable thrown = catchThrowable(()->{
+        Throwable thrown = catchThrowable(() -> {
             TryCountValidator.validate(inputCount);
         });
 
         // then
         assertThat(thrown).doesNotThrowAnyException();
     }
-
 }

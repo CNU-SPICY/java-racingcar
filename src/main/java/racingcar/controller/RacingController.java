@@ -17,7 +17,7 @@ public class RacingController {
     }
 
     public void run() {
-        IntStream.range(0, tryCount).forEach((round)->{
+        IntStream.range(0, tryCount).forEach((round) -> {
             OutputView.printResults(cars.getCars());
             cars.play();
         });

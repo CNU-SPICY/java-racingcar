@@ -15,7 +15,7 @@ class CarsTest {
     private Cars cars;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         final List<String> carNames = Arrays.asList("pobi", "crong", "honux");
         cars = new Cars(carNames);
     }
