@@ -18,7 +18,6 @@ public class RaceController {
         try {
             Cars cars = new Cars(inputView.getInputCarName());
 
-            outputView.inputRepeatCount();
             int repeatCount = inputView.repeatCount();
             repeatRace(cars, repeatCount);
 

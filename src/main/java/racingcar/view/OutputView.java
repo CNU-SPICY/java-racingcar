@@ -7,10 +7,6 @@ import java.util.List;
 
 public class OutputView {
 
-    public void inputRepeatCount() {
-        System.out.println("시도할 횟수는 몇회인가요?");
-    }
-
     public void printRaceState(List<CarDto> cars) {
         for (CarDto car : cars) {
             System.out.println(car);

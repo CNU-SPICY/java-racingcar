@@ -25,6 +25,7 @@ public class InputView {
     }
 
     public int repeatCount() throws IOException {
+        System.out.println("시도할 횟수는 몇회인가요?");
         return Integer.parseInt(bufferedReader.readLine());
     }
 
