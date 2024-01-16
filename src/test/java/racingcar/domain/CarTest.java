@@ -8,10 +8,10 @@ import static org.assertj.core.api.Assertions.*;
 
 class CarTest {
     @ParameterizedTest
-    @DisplayName("Car Move Test")
+    @DisplayName("난수값에 따른 단일자동차 이동여부 테스트")
     @CsvSource({"0,0","1,0","2,0","3,0",
             "4,1","5,1","6,1","7,1","8,1","9,1"})
-    void move(int input, int expected) {
+    void moveCarBasedOnRandomInt(int input, int expected) {
         //given
         Car car = new Car("pobi");
         //when

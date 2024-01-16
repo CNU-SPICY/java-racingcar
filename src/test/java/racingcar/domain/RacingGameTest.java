@@ -15,13 +15,15 @@ import java.util.Random;
 class RacingGameTest {
     String[] names = {"pobi", "crong", "loopy"};
     RacingGame racingGame = new RacingGame(names);
+
     @Mock
     Random mockRandom = mock(Random.class);
+
     @ParameterizedTest
-    @DisplayName("Cars Move Test")
+    @DisplayName("난수값에 따른 다수의 자동차 이동여부 테스트")
     @CsvSource({"0,0","1,0","2,0","3,0",
             "4,1","5,1","6,1","7,1","8,1","9,1"})
-    void moveCars(int input, int expected) {
+    void moveCarsBasedOnRandomInt(int input, int expected) {
         when(mockRandom.nextInt(10)).thenReturn(input);
         racingGame.moveCars();
         Car[] cars = racingGame.getCars();
@@ -31,11 +33,10 @@ class RacingGameTest {
     }
 
     @Test
-    @DisplayName("Find Winner Test")
+    @DisplayName("경주 후 승리 자동차 탐색 테스트")
     void findWinners() {
         when(mockRandom.nextInt(10)).thenReturn(5);
         racingGame.moveCars();
-        racingGame.findWinners();
-        assertThat(racingGame.getWinners()).isEqualTo(Arrays.asList("pobi", "crong", "loopy"));
+        assertThat(racingGame.findWinners()).isEqualTo(Arrays.asList("pobi", "crong", "loopy"));
     }
 }

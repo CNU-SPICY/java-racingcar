@@ -4,13 +4,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class RacingGame {
-    private final String[] carNames;
     private final Car[] cars;
-    private RandomGenerator random;
-    private ArrayList<String> winners;
+    private final RandomGenerator random;
+    private final ArrayList<String> winners;
 
     public RacingGame(String[] carNames) {
-        this.carNames = carNames;
         cars = new Car[carNames.length];
         random = new RandomGenerator();
         winners = new ArrayList<>();
@@ -30,15 +28,16 @@ public class RacingGame {
         return cars;
     }
 
-    public void findWinners() {
+    public ArrayList<String> findWinners() {
         int max = findMaxDistance(cars);
         for (Car car : cars) {
-            addWinner(car, max);
+            addToWinnersListIfMaxDistance(car, max);
         }
+        return winners;
     }
 
     public int findMaxDistance(Car[] cars) {
-        int[] distances = new int[carNames.length];
+        int[] distances = new int[cars.length];
         for(int i = 0; i < cars.length; i++) {
             distances[i] = cars[i].getDistance();
         }
@@ -46,13 +45,9 @@ public class RacingGame {
         return distances[distances.length -1];
     }
 
-    public void addWinner(Car car, int max) {
+    public void addToWinnersListIfMaxDistance(Car car, int max) {
         if(car.getDistance() == max){
             winners.add(car.getCarName());
         }
-    }
-
-    public ArrayList<String> getWinners() {
-        return winners;
     }
 }

@@ -5,8 +5,9 @@ import racingcar.view.OutputView;
 import racingcar.domain.RacingGame;
 
 public class RacingController {
-    private InputView inputView = new InputView();
-    private OutputView outputView = new OutputView();
+    private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
+
     public void race() {
         final String[] carNames = inputView.getCarNames();
         final int tryCount = inputView.getTryCount();
@@ -15,7 +16,6 @@ public class RacingController {
             racingGame.moveCars();
             outputView.printRacing(racingGame.getCars());
         }
-        racingGame.findWinners();
-        outputView.printWinner(racingGame.getWinners());
+        outputView.printWinner(racingGame.findWinners());
     }
 }
