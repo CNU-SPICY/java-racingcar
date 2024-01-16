@@ -13,7 +13,7 @@ public class RacingController {
         final int tryCount = inputView.getTryCount();
         RacingGame racingGame = new RacingGame(carNames);
         for(int i = 0; i < tryCount; i++) {
-            racingGame.moveCars();
+            racingGame.moveCars(-1);
             outputView.printRacing(racingGame.getCars());
         }
         outputView.printWinner(racingGame.findWinners());

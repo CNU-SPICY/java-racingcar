@@ -18,9 +18,13 @@ public class RacingGame {
         }
     }
 
-    public void moveCars() {
+    public void moveCars(int randomValue) {
+        int random_value = randomValue;
         for (Car car : cars) {
-            car.move(random.randomGenerate());
+            if(randomValue == -1) {
+                random_value = random.randomGenerate();
+            }
+            car.move(random_value);
         }
     }
 
