@@ -1,10 +1,9 @@
 package racingcar;
 
+import java.io.IOException;
 import racingcar.controller.RacingGame;
 import racingcar.view.InputView;
 import racingcar.view.ResultView;
-
-import java.io.IOException;
 
 public class RacingCarApplication {
 
@@ -17,7 +16,6 @@ public class RacingCarApplication {
 
         ResultView.printWinners(racingGame.getWinners());
     }
-
 }
 
 

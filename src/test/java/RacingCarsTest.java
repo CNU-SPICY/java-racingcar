@@ -1,17 +1,19 @@
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.RacingCars;
-import java.util.List;
-import static org.assertj.core.api.Assertions.*;
 
 public class RacingCarsTest {
 
-    private String[] carNames;
+    private List<String> carNames;
 
     @BeforeEach
     void setUp() {
-        carNames = new String[]{"소나타", "마티즈", "싼타페"};
+        carNames = Arrays.asList("소나타", "마티즈", "싼타페");
     }
 
     @DisplayName("RacingCar 생성이 잘 되는 지 테스트")

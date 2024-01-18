@@ -1,20 +1,22 @@
-import org.junit.jupiter.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+
+import java.util.Arrays;
+import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.NullAndEmptySource;
 import racingcar.domain.validator.CarNamesValidator;
 import racingcar.domain.validator.TryCountValidator;
-import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class InputViewTest {
 
     @DisplayName("중복된 입력이 막아지는지 테스트")
     @Test
-    void dupicatedInputTest() {
+    void duplicatedInputTest() {
         // given
-        String names = "소나타,소나타,마티즈";
+        List<String> names = Arrays.asList("소나타", "소나타", "마티즈");
 
         // when, then
         assertThatThrownBy(() -> CarNamesValidator.validate(names))
@@ -26,7 +28,7 @@ public class InputViewTest {
     @Test
     void emptyInputTest() {
         // given
-        String names = "";
+        List<String> names = Arrays.asList("");
 
         // when, then
         assertThatThrownBy(() -> CarNamesValidator.validate(names))
@@ -38,7 +40,7 @@ public class InputViewTest {
     @Test
     void multipleEmptyInputTest() {
         // given
-        String names = " ";
+        List<String> names = Arrays.asList(" ");
 
         // when, then
         assertThatThrownBy(() -> CarNamesValidator.validate(names))

@@ -1,20 +1,21 @@
 package racingcar.domain;
-import racingcar.domain.generator.NumberGenerator;
-import racingcar.domain.generator.RandomNumberGenerator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
+import racingcar.domain.generator.NumberGenerator;
+import racingcar.domain.generator.RandomNumberGenerator;
 
 public class RacingCars {
 
     private final ArrayList<RacingCar> racingCars = new ArrayList<>();
 
-    public RacingCars(String[] carNames) {
+    public RacingCars(List<String> carNames) {
         createRacingCars(carNames);
     }
 
-    private void createRacingCars(String[] carNames) {
+    private void createRacingCars(List<String> carNames) {
         for (String name : carNames) {
             racingCars.add(new RacingCar(name));
         }
