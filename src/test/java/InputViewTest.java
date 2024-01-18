@@ -82,4 +82,16 @@ public class InputViewTest {
                 .isInstanceOf(NullPointerException.class)
                 .hasMessage("입력값이 공백이면 안됩니다.");
     }
+
+    @DisplayName("각 자동차 이름이 5글자인지 확인하는 테스트")
+    @Test
+    void invalidNameLengthTest() {
+        // given
+        List<String> names = Arrays.asList("소나타", "마티즈", "싼타페", "긴자동차이름");
+
+        // when, then
+        assertThatThrownBy(() -> CarNamesValidator.validate(names))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("각 자동차 이름은 5글자여야 합니다.");
+    }
 }
