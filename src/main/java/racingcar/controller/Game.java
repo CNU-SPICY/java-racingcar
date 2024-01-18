@@ -1,27 +1,53 @@
 package racingcar.controller;
 
 import racingcar.domain.Cars;
+import racingcar.domain.MovementCondition;
 import racingcar.view.InputView;
 import racingcar.view.OutputView;
 
 public class Game {
-    private final InputView inputView = new InputView();
-    private final OutputView outputView = new OutputView();
+    private final InputView inputView;
+    private final OutputView outputView;
+    private final MovementCondition movementCondition;
+
+    private Game(MovementCondition movementCondition, InputView inputView, OutputView outputView) {
+        this.movementCondition = movementCondition;
+        this.inputView = inputView;
+        this.outputView = outputView;
+    }
+
+    public static Game createGame(MovementCondition movementCondition, InputView inputView, OutputView outputView) {
+        return new Game(movementCondition, inputView, outputView);
+    }
 
     public void start() {
+        String[] carNames = getCarNamesFromUser();
+        Integer numberOfTrials = getNumberOfTrialsFromUser();
+        Cars cars = new Cars(carNames, movementCondition);
+        runRaces(cars, numberOfTrials);
+        declareWinners(cars);
+    }
+
+
+    private String[] getCarNamesFromUser() {
         outputView.printInputCarNames();
-        String[] carNames = inputView.inputCarNames();
+        return inputView.inputCarNames();
+    }
+
+    private Integer getNumberOfTrialsFromUser() {
         outputView.printInputNumberOfTrials();
-        Integer numberOfTrials = inputView.inputNumberOfTrials();
+        return inputView.inputNumberOfTrials();
+    }
 
-        Cars cars = new Cars(carNames);
-
+    private void runRaces(Cars cars, Integer numberOfTrials) {
         outputView.printResult();
         for (int i = 0; i < numberOfTrials; i++) {
             cars.move();
             outputView.printCars(cars);
         }
+    }
 
+    private void declareWinners(Cars cars) {
         outputView.printWinner(cars.getWinners());
     }
 }

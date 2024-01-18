@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
+import racingcar.domain.ForceMovementCondition;
+import racingcar.domain.MovementCondition;
 
 public class CarTest {
     private Car car;
@@ -11,7 +13,8 @@ public class CarTest {
 
     @BeforeEach
     public void setup() {
-        car = new Car(carName);
+        MovementCondition movementCondition = new ForceMovementCondition();
+        car = new Car(carName, movementCondition);
     }
 
     @Test

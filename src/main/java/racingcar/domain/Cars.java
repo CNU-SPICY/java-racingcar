@@ -5,11 +5,10 @@ import java.util.Arrays;
 public class Cars {
     private final Car[] cars;
 
-    public Cars(String[] carNames) {
-        cars = new Car[carNames.length];
-        for (int i = 0; i < carNames.length; i++) {
-            cars[i] = new Car(carNames[i]);
-        }
+    public Cars(String[] carNames, MovementCondition movementCondition) {
+        cars = Arrays.stream(carNames)
+                .map(carName -> new Car(carName, movementCondition))
+                .toArray(Car[]::new);
     }
 
     public void move() {
